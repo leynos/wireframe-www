@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Streaming, push, and sessions · wireframe</title>
+    <meta name="description" content="The parts for multi-frame replies and server-initiated traffic ship in 0.3.0. The routed connection path does not drive them yet.">
+    <meta property="og:title" content="Streaming, push, and sessions · wireframe">
+    <meta property="og:description" content="The parts for multi-frame replies and server-initiated traffic ship in 0.3.0. The routed connection path does not drive them yet.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell wf-page-head__grid">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">Streaming, push, and sessions</li></ol></nav>
+      <h1>Streaming, push, and sessions</h1>
+      <p class="wf-deck">The parts for multi-frame replies and server-initiated traffic ship in 0.3.0. The routed connection path does not drive them yet.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/queues.webp" srcset="/wireframe-www/assets/images/queues-half.webp 768w, /wireframe-www/assets/images/queues.webp 1536w" sizes="(width &lt; 1024px) 100vw, 560px" alt="Two cyan beam tracks meet at a mint faceted rhombus. The upper track carries three closely spaced cubes, the lower two widely spaced ones; a single amber beam leaves the junction carrying three amber cubes with one cyan cube from the slow track let in between them." width="1536" height="1024" decoding="async" loading="eager" fetchpriority="high"><figcaption><span class="wf-label">Two queues</span><span>High and low priority share one connection, and the low queue still gets its turn.</span></figcaption></figure>  </div>
+</header>
+<div class="wf-shell wf-article-grid">
+  <aside class="wf-aside">
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#scope">What 0.3.0 wires up</a></li><li><a href="#response">Responses that stream</a></li><li><a href="#multi-packet">Back-pressure through a channel</a></li><li><a href="#push">Priority push queues</a></li><li><a href="#actor">The connection actor</a></li><li><a href="#sessions">Find a connection later</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/" aria-current="page">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></div>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#scope">What 0.3.0 wires up</a></li><li><a href="#response">Responses that stream</a></li><li><a href="#multi-packet">Back-pressure through a channel</a></li><li><a href="#push">Priority push queues</a></li><li><a href="#actor">The connection actor</a></li><li><a href="#sessions">Find a connection later</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/" aria-current="page">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></details>
+  </aside>
+  <article class="wf-article">
+<section aria-labelledby="scope"><h2 id="scope">What 0.3.0 wires up</h2>
+<p>Start with the boundary, because it decides what can be built today. In 0.3.0, a connection served by <code>WireframeServer</code> answers each routed request with exactly one reply frame. The types on this page, which are <code>Response</code>, <code>PushQueues</code>, <code>ConnectionActor</code>, and <code>SessionRegistry</code>, ship, are tested, and work together. The routed server path does not drive them.</p>
+<aside class="wf-callout wf-callout--fact" aria-label="Building blocks, not yet a server feature"><p class="wf-callout__kind">In 0.3.0</p><p class="wf-callout__title">Building blocks, not yet a server feature</p><p>Server-initiated pushes and multi-frame replies on a <code>WireframeServer</code> connection need a connection loop that runs the actor. That integration is upstream roadmap work. The client side is further along: <a href="/wireframe-www/guides/client/#streams"><code>call_streaming</code></a> already reads a multi-frame reply from any server that sends one.</p></aside></section>
+
+<section aria-labelledby="response"><h2 id="response">Responses that stream</h2>
+<p><code>Response</code> describes a reply of any shape: <code>Single</code> frame, a <code>Vec</code> of frames, a <code>Stream</code> of fallible frames, a <code>MultiPacket</code> channel, or <code>Empty</code>. <code>into_stream</code> turns any of them into one boxed stream, which is the form the connection actor consumes.</p>
+<figure class="wf-code" data-wf-sample="tests/streaming.rs" data-wf-anchor="stream" data-wf-copy="code" data-wf-copy-label="streaming.rs · a stream of frames">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">streaming.rs · a stream of frames</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="streaming.rs · a stream of frames, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stream</span><span class="p">::</span><span class="n">iter</span><span class="p">((</span><span class="mi">1</span><span class="o">..=</span><span class="mi">3</span><span class="p">).</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">n</span><span class="o">|</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="n">n</span><span class="p">))));</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">response</span><span class="p">:</span><span class="w"> </span><span class="nc">Response</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Response</span><span class="p">::</span><span class="n">Stream</span><span class="p">(</span><span class="nb">Box</span><span class="p">::</span><span class="n">pin</span><span class="p">(</span><span class="n">vertices</span><span class="p">));</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">frames</span><span class="p">:</span><span class="w"> </span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">into_stream</span><span class="p">().</span><span class="n">try_collect</span><span class="p">().</span><span class="k">await</span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;frames&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">Vertex</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">Vertex</span><span class="p">(</span><span class="mi">3</span><span class="p">)]);</span>
+</code></pre></div>
+</div>
+</figure>
+</section>
+
+<section aria-labelledby="multi-packet"><h2 id="multi-packet">Back-pressure through a channel</h2>
+<p><code>Response::with_channel</code> returns a sender and a <code>MultiPacket</code> response around the matching receiver. A producer task sends frames whenever it has them. Each <code>send</code> waits while the channel is full, so a slow consumer slows the producer instead of growing a buffer. Dropping the last sender ends the response.</p>
+<figure class="wf-code" data-wf-sample="tests/streaming.rs" data-wf-anchor="multi-packet" data-wf-copy="code" data-wf-copy-label="streaming.rs · a channel-backed reply">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">streaming.rs · a channel-backed reply</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="streaming.rs · a channel-backed reply, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Response</span><span class="p">::</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span><span class="p">::</span><span class="n">with_channel</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">producer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tokio</span><span class="p">::</span><span class="n">spawn</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">..=</span><span class="mi">5</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// `send` waits whenever the channel already holds two vertices.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">sender</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="n">n</span><span class="p">)).</span><span class="k">await</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Dropping the last sender ends the response.</span>
+<span class="p">});</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">frames</span><span class="p">:</span><span class="w"> </span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">into_stream</span><span class="p">().</span><span class="n">try_collect</span><span class="p">().</span><span class="k">await</span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;frames&quot;</span><span class="p">);</span>
+<span class="n">producer</span><span class="p">.</span><span class="k">await</span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the producer finished&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">frames</span><span class="p">.</span><span class="n">len</span><span class="p">(),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</figure>
+<p>A protocol marks the end of such a stream with a terminator frame: the server side supplies it through the <code>stream_end_frame</code> protocol hook, and the client recognizes it through <code>Packet::is_stream_terminator</code>.</p>
+</section>
+
+<section aria-labelledby="push"><h2 id="push">Priority push queues</h2>
+<p><code>PushQueues</code> holds frames a connection should send without being asked: notifications, heartbeats, broadcast traffic. The builder sets a high- and a low-priority capacity, an optional rate limit, and an optional dead-letter queue. The rate limit defaults to 100 pushes a second, accepts up to 10,000, and is shared by both queues; <code>unlimited()</code> removes it.</p>
+<p>The builder returns the queues and a cloneable <code>PushHandle</code>. Background tasks push through the handle: <code>push_high_priority</code> and <code>push_low_priority</code> wait for the rate limiter and then for room, while <code>try_push</code> drops the frame by policy instead of waiting, forwarding it to the dead-letter queue if one is configured.</p>
+</section>
+
+<section aria-labelledby="actor"><h2 id="actor">The connection actor</h2>
+<p><code>ConnectionActor</code> drains a connection&rsquo;s push queues and its current response into one ordered output, polling a cancellation token so it stops promptly on shutdown. High-priority frames go first, but <code>FairnessConfig</code> lets a low-priority frame through after at most eight high-priority ones by default, optionally after a time slice as well, so a busy high queue cannot starve the low one.</p>
+<figure class="wf-code" data-wf-sample="tests/streaming.rs" data-wf-anchor="actor" data-wf-copy="code" data-wf-copy-label="streaming.rs · driving the actor">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">streaming.rs · driving the actor</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="streaming.rs · driving the actor, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">queues</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PushQueues</span><span class="p">::</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="o">&gt;</span><span class="p">::</span><span class="n">builder</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">high_capacity</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">low_capacity</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">build</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;valid capacities&quot;</span><span class="p">);</span>
+
+<span class="n">handle</span>
+<span class="w">    </span><span class="p">.</span><span class="n">push_low_priority</span><span class="p">(</span><span class="n">Envelope</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[]))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;queued&quot;</span><span class="p">);</span>
+<span class="n">handle</span>
+<span class="w">    </span><span class="p">.</span><span class="n">push_high_priority</span><span class="p">(</span><span class="n">Envelope</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[]))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;queued&quot;</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">reply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stream</span><span class="p">::</span><span class="n">iter</span><span class="p">(</span><span class="fm">vec!</span><span class="p">[</span><span class="nb">Ok</span><span class="p">(</span><span class="n">Envelope</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[]))]).</span><span class="n">boxed</span><span class="p">();</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CancellationToken</span><span class="p">::</span><span class="n">new</span><span class="p">();</span>
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">actor</span><span class="p">:</span><span class="w"> </span><span class="nc">ConnectionActor</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">ConnectionActor</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">queues</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">reply</span><span class="p">),</span><span class="w"> </span><span class="n">token</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Vec</span><span class="p">::</span><span class="n">new</span><span class="p">();</span>
+<span class="n">actor</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">out</span><span class="p">).</span><span class="k">await</span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the actor drains&quot;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">ids</span><span class="p">:</span><span class="w"> </span><span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">map</span><span class="p">(</span><span class="n">Envelope</span><span class="p">::</span><span class="n">id</span><span class="p">).</span><span class="n">collect</span><span class="p">();</span>
+<span class="n">ids</span><span class="p">.</span><span class="n">sort_unstable</span><span class="p">();</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">]);</span>
+</code></pre></div>
+</div>
+</figure>
+<p>In the sample the actor writes into a <code>Vec</code>; a connection loop would write each frame to its socket. The actor also runs the <code>WireframeProtocol</code> hooks installed with <code>with_protocol</code>, which is why those hooks have no effect on the routed path yet.</p>
+</section>
+
+<section aria-labelledby="sessions"><h2 id="sessions">Find a connection later</h2>
+<p><code>SessionRegistry</code> maps a <code>ConnectionId</code> to a connection&rsquo;s <code>PushHandle</code> so that other tasks can reach it. It holds each handle weakly: when the connection&rsquo;s queues are dropped, the entry no longer resolves, and stale entries are pruned on lookup or by <code>prune()</code>.</p>
+<figure class="wf-code" data-wf-sample="tests/streaming.rs" data-wf-anchor="registry" data-wf-copy="code" data-wf-copy-label="streaming.rs · a weak registry">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">streaming.rs · a weak registry</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="streaming.rs · a weak registry, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">registry</span><span class="p">:</span><span class="w"> </span><span class="nc">SessionRegistry</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SessionRegistry</span><span class="p">::</span><span class="n">default</span><span class="p">();</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConnectionId</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">registry</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="fm">assert!</span><span class="p">(</span><span class="n">registry</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="o">&amp;</span><span class="n">id</span><span class="p">).</span><span class="n">is_some</span><span class="p">());</span>
+
+<span class="nb">drop</span><span class="p">((</span><span class="n">queues</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">));</span>
+<span class="fm">assert!</span><span class="p">(</span>
+<span class="w">    </span><span class="n">registry</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="o">&amp;</span><span class="n">id</span><span class="p">).</span><span class="n">is_none</span><span class="p">(),</span>
+<span class="w">    </span><span class="s">&quot;a closed connection leaves no handle behind&quot;</span>
+<span class="p">);</span>
+</code></pre></div>
+</div>
+</figure>
+<p><code>SessionRegistry::default()</code> requires the frame type to implement <code>Default</code>. <code>Envelope</code> does not, so in 0.3.0 a registry of envelope handles needs a frame type that does, or a wrapper.</p>
+</section>
+    <footer class="wf-article__foot">
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/users-guide.md">Upstream: docs/users-guide.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/response/enum.Response.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+    </footer>
+  </article>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

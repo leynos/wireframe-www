@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Middleware and lifecycle hooks · wireframe</title>
+    <meta name="description" content="Handlers observe; middleware answers. Hooks give each connection its own state.">
+    <meta property="og:title" content="Middleware and lifecycle hooks · wireframe">
+    <meta property="og:description" content="Handlers observe; middleware answers. Hooks give each connection its own state.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">Middleware and lifecycle hooks</li></ol></nav>
+      <h1>Middleware and lifecycle hooks</h1>
+      <p class="wf-deck">Handlers observe; middleware answers. Hooks give each connection its own state.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div>  </div>
+</header>
+<div class="wf-shell wf-article-grid">
+  <aside class="wf-aside">
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#transform">Write a Transform</a></li><li><a href="#order">Order and scope</a></li><li><a href="#reply">Write the reply</a></li><li><a href="#from-fn">What from_fn is for</a></li><li><a href="#versions">Accept two versions</a></li><li><a href="#lifecycle">Connection setup and teardown</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/" aria-current="page">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></div>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#transform">Write a Transform</a></li><li><a href="#order">Order and scope</a></li><li><a href="#reply">Write the reply</a></li><li><a href="#from-fn">What from_fn is for</a></li><li><a href="#versions">Accept two versions</a></li><li><a href="#lifecycle">Connection setup and teardown</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/" aria-current="page">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></details>
+  </aside>
+  <article class="wf-article">
+<section aria-labelledby="transform"><h2 id="transform">Write a Transform</h2>
+<p>Middleware in wireframe follows the Tower and Actix shape. A <code>Service</code> turns a <code>ServiceRequest</code> into a <code>ServiceResponse</code>; a <code>Transform</code> wraps one service in another. <code>WireframeApp::wrap</code> takes any <code>Transform</code> whose output is a <code>HandlerService</code>, the type every route&rsquo;s handler is held in.</p>
+<p>The layer below counts every request on every route. It is generic over the envelope type, so it works with a custom <code>Packet</code> as well as <code>Envelope</code>. <code>HandlerService::from_service</code> keeps the route&rsquo;s ID while swapping in the wrapping service.</p>
+<figure class="wf-code" data-wf-sample="tests/middleware.rs" data-wf-anchor="tally" data-wf-copy="code" data-wf-copy-label="middleware.rs · a counting layer">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">middleware.rs · a counting layer</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="middleware.rs · a counting layer, working example"><div class="wf-syntax"><pre><span></span><code><span class="sd">/// Counts every request that passes through, on any route.</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Tally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tallied</span><span class="p">:</span><span class="w"> </span><span class="nc">Arc</span><span class="o">&lt;</span><span class="n">AtomicUsize</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">TallyService</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">inner</span><span class="p">:</span><span class="w"> </span><span class="nc">S</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tallied</span><span class="p">:</span><span class="w"> </span><span class="nc">Arc</span><span class="o">&lt;</span><span class="n">AtomicUsize</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="cp">#[async_trait]</span>
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Service</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">TallyService</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span>
+<span class="k">where</span>
+<span class="w">    </span><span class="n">S</span><span class="p">:</span><span class="w"> </span><span class="nc">Service</span><span class="o">&lt;</span><span class="n">Error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Infallible</span><span class="o">&gt;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Sync</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">&#39;</span><span class="nb">static</span><span class="p">,</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Infallible</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">:</span><span class="w"> </span><span class="nc">ServiceRequest</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">ServiceResponse</span><span class="p">,</span><span class="w"> </span><span class="n">Infallible</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">tallied</span><span class="p">.</span><span class="n">fetch_add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Ordering</span><span class="p">::</span><span class="n">Relaxed</span><span class="p">);</span>
+<span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">inner</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">).</span><span class="k">await</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cp">#[async_trait]</span>
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">E</span><span class="p">:</span><span class="w"> </span><span class="nc">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Transform</span><span class="o">&lt;</span><span class="n">HandlerService</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Tally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HandlerService</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">service</span><span class="p">:</span><span class="w"> </span><span class="nc">HandlerService</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Self</span><span class="p">::</span><span class="n">Output</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="n">id</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">tallied</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">clone</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">.</span><span class="n">tallied</span><span class="p">);</span>
+<span class="w">        </span><span class="n">HandlerService</span><span class="p">::</span><span class="n">from_service</span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">,</span>
+<span class="w">            </span><span class="n">TallyService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">inner</span><span class="p">:</span><span class="w"> </span><span class="nc">service</span><span class="p">,</span>
+<span class="w">                </span><span class="n">tallied</span><span class="p">,</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<p>Both traits are <code>async_trait</code> traits in 0.3.0, so implementations need the <code>async-trait</code> crate.</p>
+</section>
+
+<section aria-labelledby="order"><h2 id="order">Order and scope</h2>
+<ul>
+  <li><strong>Per route.</strong> The application wraps each route&rsquo;s handler in the full middleware stack when it builds its routes. The router chooses the route first, so a message with an unknown ID never reaches middleware.</li>
+  <li><strong>First registered, outermost.</strong> The first <code>wrap</code> sees the request first and the reply last. In the sample application, the version upgrade runs before the counter.</li>
+  <li><strong>Infallible.</strong> The routed path expects <code>Error = Infallible</code>: a layer that cannot proceed writes an error reply rather than returning an error.</li>
+</ul>
+</section>
+
+<section aria-labelledby="reply"><h2 id="reply">Write the reply</h2>
+<p>A routed handler returns nothing, and the default <code>HandlerService</code> answers with the request&rsquo;s payload. Replies are therefore written by middleware: call the inner service, then replace the bytes through <code>ServiceResponse::frame_mut()</code>. <a href="/wireframe-www/getting-started/#answer">Getting started</a> builds a full <code>Ping</code> to <code>Pong</code> layer this way. The reply keeps the request&rsquo;s message ID; see <a href="/wireframe-www/guides/routing/#correlation">correlation IDs</a> for what happens to its correlation ID.</p>
+<p>A handler that needs to influence the reply has to share state with the middleware, for example through a channel or a value the middleware can read. The upstream README describes extractor-style handlers that return their reply; they are not in 0.3.0.</p>
+</section>
+
+<section aria-labelledby="from-fn"><h2 id="from-fn">What from_fn is for</h2>
+<p><code>middleware::from_fn</code> turns an async function into a <code>Transform</code>, and the upstream user&rsquo;s guide passes one to <code>wrap</code>. In 0.3.0 that does not compile: <code>from_fn</code>&rsquo;s output is an <code>FnService</code>, not a <code>HandlerService</code>, so it fails <code>wrap</code>&rsquo;s bound. It can still wrap a service directly, inside a handwritten <code>Transform</code> that hands the result to <code>HandlerService::from_service</code>, but for routed middleware a handwritten <code>Transform</code> is the shorter path.</p>
+</section>
+
+<section aria-labelledby="versions"><h2 id="versions">Accept two versions</h2>
+<p>Middleware can rewrite a request before the handler sees it. This layer upgrades a legacy message format so the handler only ever sees the current one. It tries the current format first. That test only works because version 2 added a field, so a version 1 payload is too short to decode as version 2: bincode carries no type information, and two formats with the same layout decode as each other without complaint. The sample asserts the difference before relying on it.</p>
+<figure class="wf-code" data-wf-sample="tests/middleware.rs" data-wf-anchor="upgrade" data-wf-copy="code" data-wf-copy-label="middleware.rs · upgrade on ingress">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">middleware.rs · upgrade on ingress</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="middleware.rs · upgrade on ingress, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">req</span><span class="p">:</span><span class="w"> </span><span class="nc">ServiceRequest</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">ServiceResponse</span><span class="p">,</span><span class="w"> </span><span class="n">Infallible</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">PointV2</span><span class="p">::</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">frame</span><span class="p">()).</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Ok</span><span class="p">((</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PointV1</span><span class="p">::</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">frame</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PointV2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="nc">v1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">                </span><span class="n">display_name</span><span class="p">:</span><span class="w"> </span><span class="nc">v1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+<span class="w">                </span><span class="n">intensity</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">            </span><span class="o">*</span><span class="n">req</span><span class="p">.</span><span class="n">frame_mut</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="n">to_bytes</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;encode PointV2&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="bp">self</span><span class="p">.</span><span class="n">inner</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">).</span><span class="k">await</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<p>In the sample, a version 1 point goes in and the echoed reply decodes as version 2. A production version of this layer would also count legacy traffic, so the old format can be retired when the count reaches zero.</p>
+</section>
+
+<section aria-labelledby="lifecycle"><h2 id="lifecycle">Connection setup and teardown</h2>
+<p><code>on_connection_setup</code> runs once when a connection starts and returns a value of any type. That value is held for the life of the connection and handed to <code>on_connection_teardown</code> when the stream ends. Registering a setup hook changes the application&rsquo;s connection-state type parameter.</p>
+<figure class="wf-code" data-wf-sample="tests/middleware.rs" data-wf-anchor="lifecycle" data-wf-copy="code" data-wf-copy-label="middleware.rs · per-connection state">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">middleware.rs · per-connection state</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="middleware.rs · per-connection state, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app</span>
+<span class="w">    </span><span class="p">.</span><span class="n">on_connection_setup</span><span class="p">(</span><span class="o">||</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Link</span><span class="p">::</span><span class="n">default</span><span class="p">();</span>
+<span class="w">        </span><span class="n">link</span><span class="p">.</span><span class="n">opened</span><span class="p">.</span><span class="n">fetch_add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Ordering</span><span class="p">::</span><span class="n">Relaxed</span><span class="p">);</span>
+<span class="w">        </span><span class="n">link</span>
+<span class="w">    </span><span class="p">})</span><span class="o">?</span>
+<span class="w">    </span><span class="p">.</span><span class="n">on_connection_teardown</span><span class="p">(</span><span class="k">move</span><span class="w"> </span><span class="o">|</span><span class="n">link</span><span class="p">:</span><span class="w"> </span><span class="nc">Link</span><span class="o">|</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">closed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">clone</span><span class="p">(</span><span class="o">&amp;</span><span class="n">closed</span><span class="p">);</span>
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">closed</span><span class="p">.</span><span class="n">fetch_add</span><span class="p">(</span><span class="n">link</span><span class="p">.</span><span class="n">opened</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">Ordering</span><span class="p">::</span><span class="n">Relaxed</span><span class="p">),</span><span class="w"> </span><span class="n">Ordering</span><span class="p">::</span><span class="n">Relaxed</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">})</span><span class="o">?</span><span class="p">;</span>
+</code></pre></div>
+</div>
+</figure>
+<p>Both hooks are async. Setup runs before any frame is read, after a preamble if the server expects one. The handlers and middleware in 0.3.0 have no access to this state; it is for per-connection bookkeeping such as metrics, registration, and cleanup.</p>
+<p>The <code>WireframeProtocol</code> trait, installed with <code>with_protocol</code>, defines further hooks around outbound frames and stream ends. Its hooks are run by the connection actor, which the routed server path does not use yet; see <a href="/wireframe-www/guides/streaming/#actor">the connection actor</a>.</p>
+</section>
+    <footer class="wf-article__foot">
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/users-guide.md">Upstream: docs/users-guide.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/middleware/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+    </footer>
+  </article>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

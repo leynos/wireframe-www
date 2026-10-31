@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Worked examples · wireframe</title>
+    <meta name="description" content="The runnable examples in the wireframe 0.3.0 repository, what each demonstrates, and how to run it, plus mxd, a full server built on wireframe.">
+    <meta property="og:title" content="Worked examples · wireframe">
+    <meta property="og:description" content="The runnable examples in the wireframe 0.3.0 repository, what each demonstrates, and how to run it, plus mxd, a full server built on wireframe.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/" aria-current="page">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/" aria-current="page">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li aria-current="page">Worked examples</li></ol></nav>
+      <h1>Worked examples</h1>
+      <p class="wf-deck">The wireframe repository ships ten runnable examples at v0.3.0. mxd, a complete Hotline server, is the full-size one.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div>  </div>
+</header>
+<div class="wf-shell wf-landing">
+  <p class="wf-landing__lede">Run them from a checkout of the release tag. Its lockfile pins dependencies that build, and its toolchain file names the nightly Rust it was tested with, which rustup installs on first use. Each example needs the <code>examples</code> feature.</p>
+  <div class="wf-landing__setup">
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Check out the release">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Check out the release</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Check out the release"><pre><code>git clone https://github.com/leynos/wireframe.git
+cd wireframe
+git checkout v0.3.0</code></pre></div>
+</figure>  </div>
+  <ul class="wf-examples">    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Routing</p>
+      <h2 id="echo"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/echo.rs">echo.rs</a></h2>
+      <p>The smallest server: one route, and the default reply echoes each envelope back. It listens on 127.0.0.1:7878 and stops on Ctrl+C.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run echo">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run echo</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run echo"><pre><code>cargo run --example echo --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Client</p>
+      <h2 id="client_echo_login"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/client_echo_login.rs">client_echo_login.rs</a></h2>
+      <p>Sends a typed login request inside an Envelope to the echo server and decodes the acknowledgement. Start echo first.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run client_echo_login">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run client_echo_login</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run client_echo_login"><pre><code>cargo run --example client_echo_login --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Middleware</p>
+      <h2 id="ping_pong"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/ping_pong.rs">ping_pong.rs</a></h2>
+      <p>Typed Ping and Pong messages, with a Transform that maps one to the other and a logging layer around it. The pattern this site’s samples follow.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run ping_pong">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run ping_pong</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run ping_pong"><pre><code>cargo run --example ping_pong --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Routing</p>
+      <h2 id="packet_enum"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/packet_enum.rs">packet_enum.rs</a></h2>
+      <p>An enum of packet variants, with handlers dispatched on the variant received and containers such as HashMap in the payload.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run packet_enum">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run packet_enum</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run packet_enum"><pre><code>cargo run --example packet_enum --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Routing</p>
+      <h2 id="metadata_routing"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/metadata_routing.rs">metadata_routing.rs</a></h2>
+      <p>Routing from a small frame header that carries the message ID and flags.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run metadata_routing">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run metadata_routing</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run metadata_routing"><pre><code>cargo run --example metadata_routing --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Codec</p>
+      <h2 id="hotline_codec"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/hotline_codec.rs">hotline_codec.rs</a></h2>
+      <p>Hotline framing: a 20-byte header with big-endian lengths and a transaction ID. The protocol mxd speaks.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run hotline_codec">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run hotline_codec</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run hotline_codec"><pre><code>cargo run --example hotline_codec --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Codec</p>
+      <h2 id="mysql_codec"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/mysql_codec.rs">mysql_codec.rs</a></h2>
+      <p>MySQL framing: a 3-byte little-endian payload length and a 1-byte sequence number.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run mysql_codec">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run mysql_codec</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run mysql_codec"><pre><code>cargo run --example mysql_codec --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Codec</p>
+      <h2 id="resp_codec"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/resp_codec.rs">resp_codec.rs</a></h2>
+      <p>A minimal parser and encoder for a subset of the Redis serialization protocol: simple strings, integers, and bulk strings.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run resp_codec">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run resp_codec</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run resp_codec"><pre><code>cargo run --example resp_codec --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Streaming</p>
+      <h2 id="async_stream"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/async_stream.rs">async_stream.rs</a></h2>
+      <p>Builds a Response::Stream of five frames with the async-stream crate, ready for a ConnectionActor to consume.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run async_stream">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run async_stream</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run async_stream"><pre><code>cargo run --example async_stream --features examples</code></pre></div>
+</figure>    </li>    <li class="wf-example">
+      <p class="wf-label wf-example__layer">Streaming</p>
+      <h2 id="multi_packet"><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/examples/multi_packet.rs">multi_packet.rs</a></h2>
+      <p>Splits a transcript across frames sent through a bounded channel by two producer tasks, with back-pressure keeping them in step with the consumer.</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run multi_packet">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run multi_packet</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run multi_packet"><pre><code>cargo run --example multi_packet --features examples</code></pre></div>
+</figure>    </li>  </ul>
+
+  <section class="wf-mxd-case" aria-labelledby="mxd">
+    <h2 id="mxd">mxd: a whole server</h2>
+    <p>mxd, the Marrakesh Express Daemon, is df12&rsquo;s Hotline server in Rust, and it runs on wireframe 0.3.0. Its <code>mxd-wireframe-server</code> binary frames, routes, and answers Hotline transactions through wireframe, behind a transport adapter: the domain crate does not import wireframe, so transport types never reach the domain.</p>
+    <a class="wf-arrow-link" href="https://df12.studio/mxd/architecture/">How mxd is put together <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#arrow-right"></use></svg></a>
+  </section>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

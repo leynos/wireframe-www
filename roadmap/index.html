@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Roadmap · wireframe</title>
+    <meta name="description" content="What wireframe 0.3.0 provides, what the unreleased 0.4.0 changes, and what the road to 1.0 holds.">
+    <meta property="og:title" content="Roadmap · wireframe">
+    <meta property="og:description" content="What wireframe 0.3.0 provides, what the unreleased 0.4.0 changes, and what the road to 1.0 holds.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/" aria-current="page">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/" aria-current="page">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell wf-page-head__grid">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li aria-current="page">Released, next, and further out</li></ol></nav>
+      <h1>Released, next, and further out</h1>
+      <p class="wf-deck">0.3.0 is the release. 0.4.0 is in progress on the default branch and breaks things on purpose. Beyond that, the upstream roadmap is a plan, not a promise.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/construction.webp" srcset="/wireframe-www/assets/images/construction-half.webp 768w, /wireframe-www/assets/images/construction.webp 1536w" sizes="(width &lt; 1024px) 100vw, 560px" alt="A large mint wireframe structure in perspective: the left part is fully lit, with a faceted junction at its centre; in the middle an amber beam tip is tracing a new edge; to the right, further frames exist only as faint dashed construction lines with calibration ticks." width="1536" height="1024" decoding="async" loading="eager" fetchpriority="high"><figcaption><span class="wf-label">Still being drawn</span><span>Lit lines are shipped. Dashed lines are plans, not promises.</span></figcaption></figure>  </div>
+</header>
+<div class="wf-shell wf-landing">
+  <div class="wf-horizons">
+    <section class="wf-horizon" aria-labelledby="now">
+      <p class="wf-label">Released 6 April 2026</p>
+      <h2 id="now">In 0.3.0</h2>
+      <ul>
+        <li>Routing by message ID, the bundled <code>Envelope</code> and custom <code>Packet</code> types, and correlation IDs.</li>
+        <li>Pluggable framing through <code>FrameCodec</code>, with length-delimited framing by default; preambles.</li>
+        <li><code>Transform</code> middleware and connection setup and teardown hooks.</li>
+        <li>Transport fragmentation, protocol message assembly, and three-tier memory budgets.</li>
+        <li>Streaming responses, priority push queues, a fair connection actor, and a session registry, as building blocks.</li>
+        <li>A client with correlated calls, streamed replies, hooks, tracing, and pools.</li>
+        <li>The <code>testkit</code> feature and the <code>wireframe_testing</code> crate.</li>
+      </ul>
+    </section>
+    <section class="wf-horizon wf-horizon--next" aria-labelledby="next">
+      <p class="wf-label">Unreleased · on the default branch</p>
+      <h2 id="next">Coming in 0.4.0</h2>
+      <p>The upstream changelog and the 0.3.0 to 0.4.0 migration guide list these, among others. They are breaking changes, so code written against 0.3.0 will need updates.</p>
+      <ul>
+        <li><strong>A prepared application.</strong> <code>WireframeServer::new</code> will call its factory once per server run and share the prepared application across connections, rather than building one per connection. Per-connection state moves to <code>on_connection_setup</code>; <code>WireframeServer::from_app</code> takes an application that is already built.</li>
+        <li><strong>Non-exhaustive errors.</strong> <code>ServerError</code> and <code>ClientError</code> become <code>#[non_exhaustive]</code>, and a saturated pool returns <code>ClientError::PoolSaturated</code>.</li>
+        <li><strong>Bounded decoding.</strong> The bundled bincode decoders cap the container lengths a peer can declare, at 16&nbsp;MiB for messages and 1&nbsp;KiB for preambles.</li>
+        <li><strong>No linger.</strong> <code>SocketOptions::linger</code> and the builder&rsquo;s <code>linger</code> go; <code>close().await</code> is the graceful path.</li>
+      </ul>
+    </section>
+    <section class="wf-horizon wf-horizon--later" aria-labelledby="later">
+      <p class="wf-label">Planned · upstream roadmap</p>
+      <h2 id="later">Toward 1.0</h2>
+      <ul>
+        <li>Zero-copy payloads through the public byte APIs, replacing <code>Vec&lt;u8&gt;</code> where a frame can be shared.</li>
+        <li>Formal verification of message assembly and dispatch: bounded model checks with Kani, model checks with Stateright, and proofs with Verus.</li>
+        <li>Further client ergonomics, middleware, and streaming helpers.</li>
+      </ul>
+      <p>Track the detail in the <a href="https://github.com/leynos/wireframe-www/blob/main/docs/roadmap.md">upstream roadmap</a> and the <a href="https://github.com/leynos/wireframe-www/blob/main/CHANGELOG.md">changelog</a>.</p>
+    </section>
+  </div>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

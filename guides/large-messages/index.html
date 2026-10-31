@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fragmentation and memory budgets · wireframe</title>
+    <meta name="description" content="Large messages cross the wire in pieces and are rejoined before a handler sees them, inside budgets the connection cannot exceed.">
+    <meta property="og:title" content="Fragmentation and memory budgets · wireframe">
+    <meta property="og:description" content="Large messages cross the wire in pieces and are rejoined before a handler sees them, inside budgets the connection cannot exceed.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell wf-page-head__grid">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">Fragmentation and memory budgets</li></ol></nav>
+      <h1>Fragmentation and memory budgets</h1>
+      <p class="wf-deck">Large messages cross the wire in pieces and are rejoined before a handler sees them, inside budgets the connection cannot exceed.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/fragments.webp" srcset="/wireframe-www/assets/images/fragments-half.webp 768w, /wireframe-www/assets/images/fragments.webp 1536w" sizes="(width &lt; 1024px) 100vw, 560px" alt="A long cyan wireframe slab, divided into four sections, separates into four short boxes that travel along a faint amber arc with blank gaps between them, and arrive inside a mint frame on the right, where they sit joined again as one long slab with glowing joints." width="1536" height="1024" decoding="async" loading="eager" fetchpriority="high"><figcaption><span class="wf-label">Fragments</span><span>Too long for one frame, so it crosses in pieces and is rejoined before any handler sees it.</span></figcaption></figure>  </div>
+</header>
+<div class="wf-shell wf-article-grid">
+  <aside class="wf-aside">
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#enable">Turn fragmentation on</a></li><li><a href="#fragmenter">Split and rejoin by hand</a></li><li><a href="#assembly">Message assembly is different</a></li><li><a href="#budgets">Memory budgets</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/" aria-current="page">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></div>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#enable">Turn fragmentation on</a></li><li><a href="#fragmenter">Split and rejoin by hand</a></li><li><a href="#assembly">Message assembly is different</a></li><li><a href="#budgets">Memory budgets</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/" aria-current="page">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></details>
+  </aside>
+  <article class="wf-article">
+<section aria-labelledby="enable"><h2 id="enable">Turn fragmentation on</h2>
+<p>A frame has a size limit, 1,024 bytes by default, and some messages are larger. Fragmentation splits an oversized payload into fragments that each fit a frame, then rejoins them on the far side before anything is decoded. It is off by default. <code>enable_fragmentation()</code> derives a configuration from the frame limit: messages up to sixteen frames&rsquo; worth (16&nbsp;KiB by default), and partial messages evicted after 30 seconds.</p>
+<figure class="wf-code" data-wf-sample="tests/large_messages.rs" data-wf-anchor="budgets" data-wf-copy="code" data-wf-copy-label="large_messages.rs · explicit budgets">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">large_messages.rs · explicit budgets</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="large_messages.rs · explicit budgets, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">fn</span><span class="w"> </span><span class="nf">budgets</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">MemoryBudgets</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">n</span><span class="p">:</span><span class="w"> </span><span class="kt">usize</span><span class="o">|</span><span class="w"> </span><span class="n">BudgetBytes</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;non-zero&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="n">MemoryBudgets</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="mi">16</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">),</span><span class="w"> </span><span class="n">bytes</span><span class="p">(</span><span class="mi">64</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">),</span><span class="w"> </span><span class="n">bytes</span><span class="p">(</span><span class="mi">48</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<figure class="wf-code" data-wf-sample="tests/large_messages.rs" data-wf-anchor="enable" data-wf-copy="code" data-wf-copy-label="large_messages.rs · fragmentation on">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">large_messages.rs · fragmentation on</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="large_messages.rs · fragmentation on, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">echo</span><span class="p">:</span><span class="w"> </span><span class="nc">Handler</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">Envelope</span><span class="o">|</span><span class="w"> </span><span class="nb">Box</span><span class="p">::</span><span class="n">pin</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">{}));</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">app</span><span class="p">:</span><span class="w"> </span><span class="nc">WireframeApp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WireframeApp</span><span class="p">::</span><span class="n">new</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;builder&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">enable_fragmentation</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">memory_budgets</span><span class="p">(</span><span class="n">budgets</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">echo</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;a route&quot;</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</figure>
+<p>The layering is fixed. Outbound, a reply is serialized, then fragmented, then wrapped by the codec. Inbound, frames are decoded, then reassembled, then deserialized, so handlers always receive whole envelopes. Each fragment carries a <code>FragmentHeader</code> (message ID, index, and a last-fragment flag) behind a <code>FRAG</code> marker.</p>
+<p><code>fragmentation(Some(config))</code> sets limits explicitly; <code>FragmentationConfig::for_frame_budget</code> builds one from a frame size, a maximum message size, and a reassembly timeout. Remember that changing the codec or <code>buffer_capacity</code> clears it.</p>
+</section>
+
+<section aria-labelledby="fragmenter"><h2 id="fragmenter">Split and rejoin by hand</h2>
+<p>The pieces the connection uses are public. <code>Fragmenter</code> slices a payload into capped fragments that share a message ID and count up from zero:</p>
+<figure class="wf-code" data-wf-sample="tests/large_messages.rs" data-wf-anchor="fragmenter" data-wf-copy="code" data-wf-copy-label="large_messages.rs · fragmenting">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">large_messages.rs · fragmenting</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="large_messages.rs · fragmenting, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">fragmenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fragmenter</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">512</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;non-zero&quot;</span><span class="p">));</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7_</span><span class="k">u8</span><span class="p">;</span><span class="w"> </span><span class="mi">1400</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">batch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fragmenter</span><span class="p">.</span><span class="n">fragment_bytes</span><span class="p">(</span><span class="n">message</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;fragment&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">batch</span><span class="p">.</span><span class="n">len</span><span class="p">(),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">batch</span><span class="p">.</span><span class="n">fragments</span><span class="p">().</span><span class="n">last</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;a final fragment&quot;</span><span class="p">);</span>
+<span class="fm">assert!</span><span class="p">(</span><span class="n">last</span><span class="p">.</span><span class="n">header</span><span class="p">().</span><span class="n">is_last_fragment</span><span class="p">());</span>
+</code></pre></div>
+</div>
+</figure>
+<p><code>Reassembler</code> is its mirror. It buffers fragments per message ID, rejects fragments out of order, enforces the maximum assembled size, and offers <code>purge_expired</code> for partial messages that never finish. The final fragment returns the whole message.</p>
+<figure class="wf-code" data-wf-sample="tests/large_messages.rs" data-wf-anchor="reassembler" data-wf-copy="code" data-wf-copy-label="large_messages.rs · reassembling">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">large_messages.rs · reassembling</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="large_messages.rs · reassembling, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">4096</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;non-zero&quot;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">reassembler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Reassembler</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">cap</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">::</span><span class="n">from_secs</span><span class="p">(</span><span class="mi">30</span><span class="p">));</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MessageId</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentHeader</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">FragmentIndex</span><span class="p">::</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="fm">assert!</span><span class="p">(</span>
+<span class="w">    </span><span class="n">reassembler</span>
+<span class="w">        </span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">1_</span><span class="k">u8</span><span class="p">;</span><span class="w"> </span><span class="mi">8</span><span class="p">])</span>
+<span class="w">        </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;accepted&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">is_none</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentHeader</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">FragmentIndex</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">whole</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reassembler</span>
+<span class="w">    </span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">second</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">2_</span><span class="k">u8</span><span class="p">;</span><span class="w"> </span><span class="mi">8</span><span class="p">])</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;accepted&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the final fragment completes the message&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">whole</span><span class="p">.</span><span class="n">payload</span><span class="p">().</span><span class="n">len</span><span class="p">(),</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</figure>
+</section>
+
+<section aria-labelledby="assembly"><h2 id="assembly">Message assembly is different</h2>
+<p>Fragmentation is wireframe&rsquo;s own transport mechanism, invisible to the protocol. Some protocols define their own multi-frame messages instead, with a first frame and continuations in their own header format. For those, a <code>MessageAssembler</code>, installed with <code>with_message_assembler</code>, parses each frame&rsquo;s header into a first frame or a continuation, keyed by a <code>MessageKey</code>.</p>
+<p>Assembly runs after fragment reassembly and before dispatch. It can hold several messages open at once, interleaved on one connection, and, where the protocol numbers its continuations, it rejects gaps, duplicates, and frames after the last. A message that completes is routed as usual.</p>
+</section>
+
+<section aria-labelledby="budgets"><h2 id="budgets">Memory budgets</h2>
+<p>Partial messages cost memory, and a peer can send first frames forever. <code>MemoryBudgets</code> caps three things per connection: the bytes buffered for one message, for the whole connection, and across messages in flight. Without explicit budgets, wireframe derives them from the frame limit: 16, 64, and 64 times it, which is 16, 64, and 64&nbsp;KiB by default.</p>
+<div class="wf-table-scroll" tabindex="0" role="region" aria-label="Memory budget protection tiers"><table>
+<thead><tr><th scope="col">Tier</th><th scope="col">When</th><th scope="col">What happens</th></tr></thead>
+<tbody>
+<tr><td>Per frame</td><td>A frame would push buffered bytes past a cap</td><td>The frame is rejected, that partial message is freed, and the failure counts as a deserialization failure</td></tr>
+<tr><td>Soft limit</td><td>Buffered bytes reach 80% of the smaller aggregate cap</td><td>The connection pauses briefly before reading the next frame, pushing back on the sender</td></tr>
+<tr><td>Hard cap</td><td>Buffered bytes exceed the smaller aggregate cap</td><td>The connection closes</td></tr>
+</tbody></table></div>
+<p>The effective per-message limit is the smaller of the fragmentation maximum and the per-message budget. A message that arrives in a single frame is never counted against the aggregate caps, because nothing is buffered.</p>
+</section>
+    <footer class="wf-article__foot">
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/generic-message-fragmentation-and-re-assembly-design.md">Upstream: docs/generic-message-fragmentation-and-re-assembly-design.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/fragment/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+    </footer>
+  </article>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Testing at the frame · wireframe</title>
+    <meta name="description" content="Networks deliver bytes in whatever pieces they like. Tests should too.">
+    <meta property="og:title" content="Testing at the frame · wireframe">
+    <meta property="og:description" content="Networks deliver bytes in whatever pieces they like. Tests should too.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell wf-page-head__grid">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">Testing at the frame</li></ol></nav>
+      <h1>Testing at the frame</h1>
+      <p class="wf-deck">Networks deliver bytes in whatever pieces they like. Tests should too.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/calibration.webp" srcset="/wireframe-www/assets/images/calibration-half.webp 768w, /wireframe-www/assets/images/calibration.webp 1536w" sizes="(width &lt; 1024px) 100vw, 560px" alt="On the left, an oscilloscope graticule holds a bright mint three-lobed Lissajous figure with a faint afterglow of the previous trace. On the right, an oval loop carries a cyan slab in several separate pieces along its far side and whole along its near side, with a small amber pulse where the pieces rejoin." width="1536" height="1024" decoding="async" loading="eager" fetchpriority="high"><figcaption><span class="wf-label">Calibration</span><span>Feed it round in pieces on the far side; check it arrives whole on the near side.</span></figcaption></figure>  </div>
+</header>
+<div class="wf-shell wf-article-grid">
+  <aside class="wf-aside">
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#testkit">Enable the testkit</a></li><li><a href="#partial">One byte at a time</a></li><li><a href="#fragments">Feed fragments</a></li><li><a href="#slow">Slow readers and writers</a></li><li><a href="#beyond">Beyond the testkit</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/" aria-current="page">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></div>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#testkit">Enable the testkit</a></li><li><a href="#partial">One byte at a time</a></li><li><a href="#fragments">Feed fragments</a></li><li><a href="#slow">Slow readers and writers</a></li><li><a href="#beyond">Beyond the testkit</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/" aria-current="page">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></details>
+  </aside>
+  <article class="wf-article">
+<section aria-labelledby="testkit"><h2 id="testkit">Enable the testkit</h2>
+<p>The <code>testkit</code> feature adds <code>wireframe::testkit</code>: drivers that run a real <code>WireframeApp</code> over an in-memory duplex stream, with no socket and no server. A driver encodes requests with a codec, feeds the bytes in, and returns the decoded replies. Turn the feature on for tests only, through a dev-dependency or a feature of the crate under test.</p>
+<p>Every sample on this site that does not need a real socket is tested this way, including the routing, codec, and middleware guides.</p>
+</section>
+
+<section aria-labelledby="partial"><h2 id="partial">One byte at a time</h2>
+<p>TCP delivers bytes, not frames. A codec that only works when a frame arrives in one read is a codec with a bug waiting for a busy network. <code>drive_with_partial_frames</code> concatenates the encoded requests and writes them in chunks of a chosen size, down to one byte:</p>
+<figure class="wf-code" data-wf-sample="tests/testing.rs" data-wf-anchor="partial" data-wf-copy="code" data-wf-copy-label="testing.rs · partial frames">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">testing.rs · partial frames</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="testing.rs · partial frames, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">codec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LengthDelimitedFrameCodec</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;non-zero&quot;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">replies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drive_with_partial_frames</span><span class="p">(</span><span class="n">app</span><span class="p">(),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">codec</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="n">request</span><span class="p">(</span><span class="s">b&quot;a&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">request</span><span class="p">(</span><span class="s">b&quot;b&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">one</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the app answers&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">replies</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="n">request</span><span class="p">(</span><span class="s">b&quot;a&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">request</span><span class="p">(</span><span class="s">b&quot;b&quot;</span><span class="p">)]);</span>
+</code></pre></div>
+</div>
+</figure>
+<p>The helper builds requests by serializing an <code>Envelope</code> with <code>BincodeSerializer</code>, the application&rsquo;s default. The echo application returns each request unchanged, so the replies equal the requests. <code>drive_with_partial_codec_frames</code> returns decoded codec frames instead of payloads, for checking header fields.</p>
+</section>
+
+<section aria-labelledby="fragments"><h2 id="fragments">Feed fragments</h2>
+<p><code>drive_with_fragments</code> takes a raw payload and a <code>Fragmenter</code>, fragments the payload, wraps each fragment in an envelope, and feeds the frames through the application. The <a href="/wireframe-www/guides/large-messages/#enable">fragmentation guide</a>&rsquo;s sample uses it with a 2,000-byte request and 256-byte fragments. <code>drive_with_partial_fragments</code> combines both drivers, fragmenting and then chunking.</p>
+<aside class="wf-callout wf-callout--note" aria-label="The fragment driver addresses message ID 1"><p class="wf-callout__kind">Note</p><p class="wf-callout__title">The fragment driver addresses message ID 1</p><p>The envelopes the fragment driver builds carry message ID 1, so the application under test needs a route there.</p></aside><p><code>wireframe::testkit::reassembly</code> adds assertions over reassembly and message-assembly state, such as whether a message is still incomplete, how many bytes are buffered, and which error ended an assembly. They return a result rather than panicking, so they work in <code>rstest</code> tests and in <code>rstest-bdd</code> steps.</p>
+</section>
+
+<section aria-labelledby="slow"><h2 id="slow">Slow readers and writers</h2>
+<p>Back-pressure only shows up when something is slow. <code>SlowIoPacing</code> sets a chunk size and a delay between chunks, and <code>SlowIoConfig</code> applies one pacing to the writer, another to the reader, and a duplex capacity small enough to fill:</p>
+<figure class="wf-code" data-wf-sample="tests/testing.rs" data-wf-anchor="slow" data-wf-copy="code" data-wf-copy-label="testing.rs · paced I/O under paused time">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">testing.rs · paced I/O under paused time</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="testing.rs · paced I/O under paused time, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">pace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">bytes</span><span class="p">:</span><span class="w"> </span><span class="kt">usize</span><span class="o">|</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SlowIoPacing</span><span class="p">::</span><span class="n">new</span><span class="p">(</span>
+<span class="w">        </span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">bytes</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;non-zero&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Duration</span><span class="p">::</span><span class="n">from_millis</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SlowIoConfig</span><span class="p">::</span><span class="n">new</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">with_writer_pacing</span><span class="p">(</span><span class="n">pace</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="n">with_reader_pacing</span><span class="p">(</span><span class="n">pace</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="n">with_capacity</span><span class="p">(</span><span class="mi">64</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">replies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drive_with_slow_codec_payloads</span><span class="p">(</span><span class="n">app</span><span class="p">(),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">codec</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="n">request</span><span class="p">(</span><span class="s">b&quot;slow&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the app answers&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">replies</span><span class="p">,</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="n">request</span><span class="p">(</span><span class="s">b&quot;slow&quot;</span><span class="p">)]);</span>
+</code></pre></div>
+</div>
+</figure>
+<p>The test runs with <code>#[tokio::test(start_paused = true)]</code>, so the delays advance virtual time and the test finishes at once. A small capacity and a paced reader are what make the application&rsquo;s writes wait.</p>
+</section>
+
+<section aria-labelledby="beyond"><h2 id="beyond">Beyond the testkit</h2>
+<p>The separate <a href="https://crates.io/crates/wireframe_testing"><code>wireframe_testing</code></a> crate, also at 0.3.0, re-exports the testkit and adds more: codec-aware drivers that return payloads or frames for any codec, Hotline-framed fixtures for valid, oversized, truncated, and correlated frames, an observability handle that captures logs and metrics together, and a harness that starts a real server and a connected client in one test. This site&rsquo;s samples use only the main crate&rsquo;s <code>testkit</code>; the crate&rsquo;s own documentation covers the rest.</p>
+<p>For servers and clients that must meet over a real socket, the <a href="/wireframe-www/getting-started/">getting-started program</a> is itself a pattern: bind to port 0, read <code>local_addr</code>, wait on <code>ready_signal</code>, and stop with <code>run_with_shutdown</code>.</p>
+</section>
+    <footer class="wf-article__foot">
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/wireframe-testing-crate.md">Upstream: docs/wireframe-testing-crate.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/testkit/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+    </footer>
+  </article>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

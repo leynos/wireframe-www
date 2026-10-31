@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A first server, end to end · wireframe</title>
+    <meta name="description" content="Add the crate, route one message, answer it in middleware, and call it from a client over real TCP.">
+    <meta property="og:title" content="A first server, end to end · wireframe">
+    <meta property="og:description" content="Add the crate, route one message, answer it in middleware, and call it from a client over real TCP.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/" aria-current="page">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/" aria-current="page">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li aria-current="page">A first server, end to end</li></ol></nav>
+      <h1>A first server, end to end</h1>
+      <p class="wf-deck">Add the crate, route one message, answer it in middleware, and call it from a client over real TCP.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div>  </div>
+</header>
+<div class="wf-shell wf-article-grid">
+  <aside class="wf-aside">
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#dependencies">Add the dependencies</a></li><li><a href="#messages">Describe the messages</a></li><li><a href="#answer">Route and answer</a></li><li><a href="#serve">Serve it</a></li><li><a href="#call">Call it</a></li><li><a href="#next">Where next</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></div>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#dependencies">Add the dependencies</a></li><li><a href="#messages">Describe the messages</a></li><li><a href="#answer">Route and answer</a></li><li><a href="#serve">Serve it</a></li><li><a href="#call">Call it</a></li><li><a href="#next">Where next</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></details>
+  </aside>
+  <article class="wf-article">
+<p class="wf-lede">The program on this page is a test in the site&rsquo;s sample crate. It starts a real server on a loopback port, connects a real client, sends a <code>Ping</code>, and checks the <code>Pong</code>. Every panel below is cut from that file, and the crate runs against wireframe 0.3.0 with Rust 1.99.0.</p>
+
+<section aria-labelledby="dependencies"><h2 id="dependencies">Add the dependencies</h2>
+<p>wireframe runs on Tokio and, by default, encodes messages with bincode 2. The sample crate also uses <code>async-trait</code> to write middleware, and turns on two opt-in features: <code>pool</code> for client connection pools and <code>testkit</code> for the test drivers. Neither is needed for a first server.</p>
+<figure class="wf-code" data-wf-sample="Cargo.toml" data-wf-anchor="deps" data-wf-copy="code" data-wf-copy-label="Cargo.toml">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Cargo.toml</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Cargo.toml, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">[dependencies]</span>
+<span class="n">wireframe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;=0.3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pool&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;testkit&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="n">tokio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;macros&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;net&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rt-multi-thread&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sync&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;test-util&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="n">async-trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.89&quot;</span>
+<span class="n">bincode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.0.1&quot;</span>
+<span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.10.1&quot;</span>
+<span class="n">futures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.3.31&quot;</span>
+<span class="c1"># wireframe 0.3.0 does not compile against tokio-util 0.7.20, which adds a</span>
+<span class="c1"># second `Encoder` impl for `LengthDelimitedCodec`; Cargo.lock pins 0.7.19.</span>
+<span class="n">tokio-util</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.7.16&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;codec&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rt&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<aside class="wf-callout wf-callout--warning" aria-label="Pin tokio-util before the first build"><p class="wf-callout__kind">Warning</p><p class="wf-callout__title">Pin tokio-util before the first build</p><p>wireframe 0.3.0 fails to compile against tokio-util 0.7.20, which added a second <code>Encoder</code> implementation for <code>LengthDelimitedCodec</code> and made a conversion inside wireframe ambiguous (error E0283). A fresh dependency resolves 0.7.20. Pin 0.7.19 in the lockfile until a fixed release of wireframe ships:</p></aside><figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Pin tokio-util">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Pin tokio-util</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Pin tokio-util"><pre><code>cargo update -p tokio-util --precise 0.7.19</code></pre></div>
+</figure></section>
+
+<section aria-labelledby="messages"><h2 id="messages">Describe the messages</h2>
+<p>A message is any type bincode can encode and decode. Deriving <code>bincode::Encode</code> and <code>bincode::BorrowDecode</code> is enough: wireframe implements its <code>Message</code> trait for such types, which provides <code>to_bytes</code> and <code>from_bytes</code>. The message ID is not part of the type. It travels in the envelope, so the same type could be routed under any ID.</p>
+<figure class="wf-code" data-wf-sample="tests/first_server.rs" data-wf-anchor="messages" data-wf-copy="code" data-wf-copy-label="first_server.rs · messages">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">first_server.rs · messages</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="first_server.rs · messages, working example"><div class="wf-syntax"><pre><span></span><code><span class="cp">#[derive(bincode::Encode, bincode::BorrowDecode, Debug)]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Ping</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="cp">#[derive(bincode::Encode, bincode::BorrowDecode, Debug, PartialEq)]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Pong</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">const</span><span class="w"> </span><span class="n">PING</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+</div>
+</figure>
+</section>
+
+<section aria-labelledby="answer"><h2 id="answer">Route and answer</h2>
+<p>A route maps a message ID to a handler. In 0.3.0 a handler is an <code>Arc</code>&rsquo;d closure that receives a reference to the envelope and returns a boxed future of <code>()</code>. It can inspect the request, log it, or hand work elsewhere, but it does not return the reply.</p>
+<p>Replies are written in middleware. Each route&rsquo;s handler is wrapped in a <code>HandlerService</code>, and the default service answers with the request&rsquo;s own payload, so an unwrapped route is an echo. A middleware layer calls the inner service, then replaces the reply&rsquo;s bytes.</p>
+<figure class="wf-code" data-wf-sample="tests/first_server.rs" data-wf-anchor="middleware" data-wf-copy="code" data-wf-copy-label="first_server.rs · the reply">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">first_server.rs · the reply</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="first_server.rs · the reply, working example"><div class="wf-syntax"><pre><span></span><code><span class="sd">/// Middleware that answers every `Ping` with a `Pong`.</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">AnswerPings</span><span class="p">;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">AnswerPingsService</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">inner</span><span class="p">:</span><span class="w"> </span><span class="nc">S</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="cp">#[async_trait]</span>
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Service</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">AnswerPingsService</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span>
+<span class="k">where</span>
+<span class="w">    </span><span class="n">S</span><span class="p">:</span><span class="w"> </span><span class="nc">Service</span><span class="o">&lt;</span><span class="n">Error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Infallible</span><span class="o">&gt;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Sync</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">&#39;</span><span class="nb">static</span><span class="p">,</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Infallible</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">:</span><span class="w"> </span><span class="nc">ServiceRequest</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">ServiceResponse</span><span class="p">,</span><span class="w"> </span><span class="n">Infallible</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">ping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ping</span><span class="p">::</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">frame</span><span class="p">()).</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="n">msg</span><span class="p">).</span><span class="n">ok</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">inner</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">ping</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ping</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">pong</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pong</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="nc">format</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;pong {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ping</span><span class="p">.</span><span class="n">body</span><span class="p">),</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">            </span><span class="o">*</span><span class="n">response</span><span class="p">.</span><span class="n">frame_mut</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pong</span><span class="p">.</span><span class="n">to_bytes</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;encode Pong&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cp">#[async_trait]</span>
+<span class="k">impl</span><span class="w"> </span><span class="n">Transform</span><span class="o">&lt;</span><span class="n">HandlerService</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">AnswerPings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HandlerService</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">service</span><span class="p">:</span><span class="w"> </span><span class="nc">HandlerService</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Self</span><span class="p">::</span><span class="n">Output</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="n">id</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HandlerService</span><span class="p">::</span><span class="n">from_service</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">AnswerPingsService</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">inner</span><span class="p">:</span><span class="w"> </span><span class="nc">service</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<p>With the middleware in place, the application is a route and a wrap. <code>WireframeApp::new()</code> is fallible, as is each builder step, so the whole chain returns <code>wireframe::Result</code>.</p>
+<figure class="wf-code" data-wf-sample="tests/first_server.rs" data-wf-anchor="app" data-wf-copy="code" data-wf-copy-label="first_server.rs · the application">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">first_server.rs · the application</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="first_server.rs · the application, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">fn</span><span class="w"> </span><span class="nf">build_app</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">wireframe</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">WireframeApp</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">handler</span><span class="p">:</span><span class="w"> </span><span class="nc">Handler</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="o">|</span><span class="n">env</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">Envelope</span><span class="o">|</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">env</span><span class="p">.</span><span class="n">id</span><span class="p">();</span>
+<span class="w">        </span><span class="nb">Box</span><span class="p">::</span><span class="n">pin</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;routed message {id}&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="n">WireframeApp</span><span class="p">::</span><span class="n">new</span><span class="p">()</span><span class="o">?</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="n">PING</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">AnswerPings</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<aside class="wf-callout wf-callout--fact" aria-label="middleware::from_fn does not fit WireframeApp::wrap"><p class="wf-callout__kind">In 0.3.0</p><p class="wf-callout__title">middleware::from_fn does not fit WireframeApp::wrap</p><p>The upstream user&rsquo;s guide builds this middleware with <code>middleware::from_fn</code>. In 0.3.0 that does not compile: <code>wrap</code> accepts only a <code>Transform</code> whose output is a <code>HandlerService</code>, and <code>from_fn</code> produces a different service type. The <code>Transform</code> above is the pattern the upstream <code>ping_pong</code> example uses.</p></aside></section>
+
+<section aria-labelledby="serve"><h2 id="serve">Serve it</h2>
+<p><code>WireframeServer::new</code> takes a factory rather than an application: in 0.3.0 it calls the factory once for every accepted connection, so each connection starts from a freshly built application. Binding moves the server into its bound state; port 0 asks the operating system for a free port, and <code>local_addr</code> reports which one it chose. <code>ready_signal</code> fires once the workers are accepting, and <code>run_with_shutdown</code> stops them when its future completes.</p>
+<figure class="wf-code" data-wf-sample="tests/first_server.rs" data-wf-anchor="serve" data-wf-copy="code" data-wf-copy-label="first_server.rs · the server">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">first_server.rs · the server</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="first_server.rs · the server, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">serve</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">std</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(</span><span class="n">SocketAddr</span><span class="p">,</span><span class="w"> </span><span class="n">oneshot</span><span class="p">::</span><span class="n">Sender</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">ready_tx</span><span class="p">,</span><span class="w"> </span><span class="n">ready_rx</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">oneshot</span><span class="p">::</span><span class="n">channel</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">stop_tx</span><span class="p">,</span><span class="w"> </span><span class="n">stop_rx</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">oneshot</span><span class="p">::</span><span class="n">channel</span><span class="p">::</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WireframeServer</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="o">||</span><span class="w"> </span><span class="n">build_app</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;configure the app&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">workers</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ready_signal</span><span class="p">(</span><span class="n">ready_tx</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&quot;127.0.0.1:0&quot;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;a socket address&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="n">Error</span><span class="p">::</span><span class="n">other</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">server</span><span class="p">.</span><span class="n">local_addr</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;a bound address&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">tokio</span><span class="p">::</span><span class="n">spawn</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">run_with_shutdown</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stop_rx</span><span class="p">.</span><span class="k">await</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}));</span>
+<span class="w">    </span><span class="n">ready_rx</span><span class="p">.</span><span class="k">await</span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="n">Error</span><span class="p">::</span><span class="n">other</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">((</span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">stop_tx</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+</section>
+
+<section aria-labelledby="call"><h2 id="call">Call it</h2>
+<p>The client shares the server&rsquo;s defaults: the same length-delimited framing, the same bincode serializer, the same envelope. <code>call_correlated</code> stamps a fresh correlation ID on the request, sends it, reads the reply, and fails with <code>ClientError::CorrelationMismatch</code> if the reply carries a different one.</p>
+<figure class="wf-code" data-wf-sample="tests/first_server.rs" data-wf-anchor="call" data-wf-copy="code" data-wf-copy-label="first_server.rs · the client">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">first_server.rs · the client</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="first_server.rs · the client, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="n">addr</span><span class="p">:</span><span class="w"> </span><span class="nc">SocketAddr</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">Pong</span><span class="p">,</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="k">dyn</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WireframeClient</span><span class="p">::</span><span class="n">builder</span><span class="p">().</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">ping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ping</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;from the scope&quot;</span><span class="p">.</span><span class="n">into</span><span class="p">(),</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Envelope</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">PING</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="n">ping</span><span class="p">.</span><span class="n">to_bytes</span><span class="p">()</span><span class="o">?</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">response</span><span class="p">:</span><span class="w"> </span><span class="nc">Envelope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">call_correlated</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">pong</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pong</span><span class="p">::</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">payload_bytes</span><span class="p">())</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">close</span><span class="p">().</span><span class="k">await</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">pong</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<p>Run the program with the rest of the sample crate:</p>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Run the samples">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Run the samples</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Run the samples"><pre><code>cargo test --test first_server</code></pre></div>
+</figure></section>
+
+<section aria-labelledby="next"><h2 id="next">Where next</h2>
+<ul class="wf-next">
+  <li><a href="/wireframe-www/guides/routing/">Route several message types, or route on a custom envelope.</a></li>
+  <li><a href="/wireframe-www/guides/codecs/">Speak an existing wire format with a custom codec.</a></li>
+  <li><a href="/wireframe-www/guides/middleware/">Layer middleware and keep per-connection state.</a></li>
+  <li><a href="/wireframe-www/guides/testing/">Test the application without opening a socket.</a></li>
+</ul>
+</section>
+    <footer class="wf-article__foot">
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/users-guide.md">Upstream: docs/users-guide.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+    </footer>
+  </article>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

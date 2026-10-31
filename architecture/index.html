@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The stack, layer by layer · wireframe</title>
+    <meta name="description" content="Four nouns, two directions, one fixed order. Knowing which layer owns what is most of knowing wireframe.">
+    <meta property="og:title" content="The stack, layer by layer · wireframe">
+    <meta property="og:description" content="Four nouns, two directions, one fixed order. Knowing which layer owns what is most of knowing wireframe.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/" aria-current="page">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/" aria-current="page">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li aria-current="page">The stack, layer by layer</li></ol></nav>
+      <h1>The stack, layer by layer</h1>
+      <p class="wf-deck">Four nouns, two directions, one fixed order. Knowing which layer owns what is most of knowing wireframe.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div>  </div>
+</header>
+<div class="wf-shell wf-article-grid">
+  <aside class="wf-aside">
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#vocabulary">Four nouns</a></li><li><a href="#inbound">Inbound</a></li><li><a href="#outbound">Outbound</a></li><li><a href="#state">Where state lives</a></li><li><a href="#not-yet">What 0.3.0 does not do</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></div>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#vocabulary">Four nouns</a></li><li><a href="#inbound">Inbound</a></li><li><a href="#outbound">Outbound</a></li><li><a href="#state">Where state lives</a></li><li><a href="#not-yet">What 0.3.0 does not do</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></details>
+  </aside>
+  <article class="wf-article">
+<section aria-labelledby="vocabulary"><h2 id="vocabulary">Four nouns</h2>
+<p>wireframe keeps each layer&rsquo;s vocabulary separate, so transport concerns do not leak into routing and routing does not leak into the domain.</p>
+<dl class="wf-defs">
+  <div><dt>Frame</dt><dd>The transport unit a <code>FrameCodec</code> cuts from the byte stream and writes back to it. It knows its own length and, perhaps, a correlation ID; it does not know what its payload means.</dd></div>
+  <div><dt>Fragment</dt><dd>A bounded slice of an oversized payload, with a header saying which message it belongs to and where it falls. Optional, and invisible above the transport.</dd></div>
+  <div><dt>Envelope</dt><dd>The routable wrapper decoded from a frame&rsquo;s payload: a message ID, an optional correlation ID, and the payload bytes. <code>Packet</code> is the trait; <code>Envelope</code> is the bundled type.</dd></div>
+  <div><dt>Message</dt><dd>The typed value inside an envelope&rsquo;s payload, encoded by the serializer. Bincode by default.</dd></div>
+</dl>
+</section>
+
+<section aria-labelledby="inbound"><h2 id="inbound">Inbound</h2>
+<ol class="wf-steps">
+  <li><strong>Accept.</strong> A worker accepts a TCP connection and builds an application from the factory.</li>
+  <li><strong>Preamble.</strong> If configured, a preamble of up to 1&nbsp;KiB is decoded first; bytes read past it are replayed.</li>
+  <li><strong>Decode frames.</strong> The codec cuts frames from the stream.</li>
+  <li><strong>Reassemble.</strong> With fragmentation on, fragments are rejoined into whole payloads.</li>
+  <li><strong>Deserialize.</strong> The serializer decodes an envelope. Metadata-aware serializers can read routing fields without decoding the whole payload.</li>
+  <li><strong>Assemble.</strong> With a message assembler installed, protocol-level multi-frame messages are joined.</li>
+  <li><strong>Route.</strong> The message ID selects one route. No route: the message is logged and dropped.</li>
+  <li><strong>Middleware and handler.</strong> The route&rsquo;s middleware stack runs, outermost first, around the handler.</li>
+</ol>
+</section>
+
+<section aria-labelledby="outbound"><h2 id="outbound">Outbound</h2>
+<p>The reply takes the reverse path: back out through the middleware, rebuilt as an envelope with the request&rsquo;s message ID and correlation ID, serialized, fragmented if it is too large and fragmentation is on, and wrapped by the codec. The order is fixed, so a reply is always fragmented before framing and never after.</p>
+</section>
+
+<section aria-labelledby="state"><h2 id="state">Where state lives</h2>
+<div class="wf-table-scroll" tabindex="0" role="region" aria-label="Where state lives"><table>
+<thead><tr><th scope="col">Scope</th><th scope="col">Mechanism</th></tr></thead>
+<tbody>
+<tr><td>Application-wide</td><td><code>app_data</code> stores one value per type, shared by every connection the application serves</td></tr>
+<tr><td>Per connection</td><td>The value returned by <code>on_connection_setup</code>, handed to <code>on_connection_teardown</code></td></tr>
+<tr><td>Per middleware layer</td><td>Fields of the <code>Transform</code>, such as the counter in <a href="/wireframe-www/guides/middleware/#transform">the middleware guide</a></td></tr>
+<tr><td>Across connections</td><td><code>SessionRegistry</code>, holding weak push handles by connection ID</td></tr>
+</tbody></table></div>
+</section>
+
+<section aria-labelledby="not-yet"><h2 id="not-yet">What 0.3.0 does not do</h2>
+<p>A frank list, because every one of these appears somewhere in the upstream design documents:</p>
+<ul>
+  <li>Handlers do not return replies or take extractors. Replies are written in middleware.</li>
+  <li><code>middleware::from_fn</code> cannot be passed to <code>WireframeApp::wrap</code>.</li>
+  <li>The routed server path sends one reply per request. Push queues, the connection actor, streaming responses, and <code>WireframeProtocol</code> hooks are not driven by it.</li>
+  <li>Codec recovery policies and the <code>on_eof</code> hook are defined but not consulted.</li>
+  <li>The read timeout does not close idle connections.</li>
+  <li>There is no built-in TLS.</li>
+</ul>
+<p>The <a href="/wireframe-www/roadmap/">roadmap</a> says what is in progress.</p>
+</section>
+    <footer class="wf-article__foot">
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/rust-binary-router-library-design.md">Upstream: docs/rust-binary-router-library-design.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+    </footer>
+  </article>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

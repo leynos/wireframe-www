@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Running in production · wireframe</title>
+    <meta name="description" content="The server is a typestate, a pool of workers, and an accept loop that backs off when the listener fails.">
+    <meta property="og:title" content="Running in production · wireframe">
+    <meta property="og:description" content="The server is a typestate, a pool of workers, and an accept loop that backs off when the listener fails.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">Running in production</li></ol></nav>
+      <h1>Running in production</h1>
+      <p class="wf-deck">The server is a typestate, a pool of workers, and an accept loop that backs off when the listener fails.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div>  </div>
+</header>
+<div class="wf-shell wf-article-grid">
+  <aside class="wf-aside">
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#bind">Bind and size the workers</a></li><li><a href="#shutdown">Readiness and shutdown</a></li><li><a href="#limits">Timeouts and failure limits</a></li><li><a href="#metrics">Metrics</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/" aria-current="page">Running in production</a></li></ul></nav></div>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#bind">Bind and size the workers</a></li><li><a href="#shutdown">Readiness and shutdown</a></li><li><a href="#limits">Timeouts and failure limits</a></li><li><a href="#metrics">Metrics</a></li></ul></nav>
+<nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/" aria-current="page">Running in production</a></li></ul></nav></details>
+  </aside>
+  <article class="wf-article">
+<section aria-labelledby="bind"><h2 id="bind">Bind and size the workers</h2>
+<p><code>WireframeServer</code> is a typestate. <code>new</code> returns an unbound server; <code>bind</code> or <code>bind_existing_listener</code> returns a bound one, which can report <code>local_addr</code> and run. Configuration that belongs before binding, such as workers, backoff, readiness, and the preamble, is set on either.</p>
+<figure class="wf-code" data-wf-sample="tests/production.rs" data-wf-anchor="server" data-wf-copy="code" data-wf-copy-label="production.rs · configure, bind, run, stop">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">production.rs · configure, bind, run, stop</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="production.rs · configure, bind, run, stop, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">backoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BackoffConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">initial_delay</span><span class="p">:</span><span class="w"> </span><span class="nc">Duration</span><span class="p">::</span><span class="n">from_millis</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">    </span><span class="n">max_delay</span><span class="p">:</span><span class="w"> </span><span class="nc">Duration</span><span class="p">::</span><span class="n">from_secs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WireframeServer</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">workers</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">accept_backoff</span><span class="p">(</span><span class="n">backoff</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&quot;127.0.0.1:0&quot;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;a socket address&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;bind&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">worker_count</span><span class="p">(),</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="n">stopped</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">oneshot</span><span class="p">::</span><span class="n">channel</span><span class="p">::</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tokio</span><span class="p">::</span><span class="n">spawn</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">run_with_shutdown</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stopped</span><span class="p">.</span><span class="k">await</span><span class="p">;</span>
+<span class="p">}));</span>
+
+<span class="n">stop</span><span class="p">.</span><span class="n">send</span><span class="p">(()).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the server is listening for shutdown&quot;</span><span class="p">);</span>
+<span class="n">running</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the server task joins&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;a clean stop&quot;</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</figure>
+<ul>
+  <li><strong>Workers.</strong> One accept-loop task per worker, defaulting to the number of CPU cores and never fewer than one.</li>
+  <li><strong>Applications.</strong> In 0.3.0 the factory is called once for every accepted connection, so per-connection state can live in the application. 0.4.0 changes this; see <a href="/wireframe-www/roadmap/">the roadmap</a>.</li>
+  <li><strong>Accept backoff.</strong> When <code>accept</code> fails, as it does when the process runs out of file descriptors, a worker waits and retries with exponential backoff between <code>initial_delay</code> and <code>max_delay</code>. Out-of-range values are corrected, not rejected.</li>
+  <li><strong>Panics.</strong> A panic inside a connection task is caught, logged, and counted; the worker and every other connection carry on.</li>
+</ul>
+</section>
+
+<section aria-labelledby="shutdown"><h2 id="shutdown">Readiness and shutdown</h2>
+<p><code>ready_signal</code> takes a oneshot sender that fires once the workers are accepting, which is what a test or an orchestration probe should wait for. <code>run</code> serves until Ctrl+C; <code>run_with_shutdown</code> serves until the future it is given completes, then stops the workers. The sample stops the server through a oneshot channel and checks that it returns cleanly.</p>
+</section>
+
+<section aria-labelledby="limits"><h2 id="limits">Timeouts and failure limits</h2>
+<div class="wf-table-scroll" tabindex="0" role="region" aria-label="Server limits in wireframe 0.3.0"><table>
+<thead><tr><th scope="col">Setting</th><th scope="col">Default</th><th scope="col">Effect in 0.3.0</th></tr></thead>
+<tbody>
+<tr><td><code>buffer_capacity</code></td><td>1,024 bytes</td><td>Frames over the limit are a decoder error, and the connection closes</td></tr>
+<tr><td><code>read_timeout_ms</code></td><td>100&nbsp;ms</td><td>A housekeeping interval: when it elapses with no frame, expired partial messages are purged and the connection keeps waiting</td></tr>
+<tr><td>Deserialization failures</td><td>10 in a row</td><td>The connection closes; any good frame resets the count</td></tr>
+<tr><td><code>preamble_timeout</code></td><td>None</td><td>A preamble that does not arrive in time goes to the failure handler, and the connection closes</td></tr>
+<tr><td>Memory budgets</td><td>16, 64, 64 &times; frame limit</td><td>Reads slow at 80% of the aggregate cap and the connection closes past it; see <a href="/wireframe-www/guides/large-messages/#budgets">memory budgets</a></td></tr>
+</tbody></table></div>
+<aside class="wf-callout wf-callout--fact" aria-label="An idle connection is never closed by the read timeout"><p class="wf-callout__kind">In 0.3.0</p><p class="wf-callout__title">An idle connection is never closed by the read timeout</p><p>Despite its name, <code>read_timeout_ms</code> does not disconnect a quiet peer. In 0.3.0 an idle connection stays open until the peer closes it or the server shuts down. Bound idle time at the protocol level, for example with a heartbeat the server expects, or in front of the server.</p></aside></section>
+
+<section aria-labelledby="metrics"><h2 id="metrics">Metrics</h2>
+<p>With the default <code>metrics</code> feature, wireframe records through the <a href="https://crates.io/crates/metrics"><code>metrics</code></a> crate, so any recorder installed by the application receives them. With the feature off, the recording helpers become no-ops, so instrumentation can stay in place. The names are public constants:</p>
+<figure class="wf-code" data-wf-sample="tests/production.rs" data-wf-anchor="metrics" data-wf-copy="code" data-wf-copy-label="production.rs · metric names">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">production.rs · metric names</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="production.rs · metric names, working example"><div class="wf-syntax"><pre><span></span><code><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">metrics</span><span class="p">::</span><span class="n">CONNECTIONS_ACTIVE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wireframe_connections_active&quot;</span><span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span>
+<span class="w">    </span><span class="n">metrics</span><span class="p">::</span><span class="n">FRAMES_PROCESSED</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;wireframe_frames_processed_total&quot;</span>
+<span class="p">);</span>
+<span class="fm">assert_eq!</span><span class="p">(</span><span class="n">metrics</span><span class="p">::</span><span class="n">CODEC_ERRORS</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wireframe_codec_errors_total&quot;</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</figure>
+<div class="wf-table-scroll" tabindex="0" role="region" aria-label="Metrics wireframe records"><table>
+<thead><tr><th scope="col">Name</th><th scope="col">Kind</th><th scope="col">Records</th></tr></thead>
+<tbody>
+<tr><td><code>wireframe_connections_active</code></td><td>Gauge</td><td>Open connections</td></tr>
+<tr><td><code>wireframe_frames_processed_total</code></td><td>Counter</td><td>Frames, labelled by direction</td></tr>
+<tr><td><code>wireframe_errors_total</code></td><td>Counter</td><td>Errors, labelled by kind</td></tr>
+<tr><td><code>wireframe_connection_panics_total</code></td><td>Counter</td><td>Panicking connection tasks</td></tr>
+<tr><td><code>wireframe_codec_errors_total</code></td><td>Counter</td><td>Codec errors, labelled by type and recovery policy</td></tr>
+</tbody></table></div>
+<p>Logging goes through both <code>log</code> and <code>tracing</code>. Install a subscriber or logger to see the warnings for unrouted messages, rejected frames, and preamble errors.</p>
+</section>
+    <footer class="wf-article__foot">
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/hardening-wireframe-a-guide-to-production-resilience.md">Upstream: docs/hardening-wireframe-a-guide-to-production-resilience.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/server/struct.WireframeServer.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+    </footer>
+  </article>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

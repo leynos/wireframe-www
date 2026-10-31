@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>wireframe · Binary protocols, routed.</title>
+    <meta name="description" content="A Rust library for servers and clients that speak frame-based binary protocols. Frame the bytes, route each message by ID, and keep the protocol out of the business logic.">
+    <meta property="og:title" content="wireframe · Binary protocols, routed.">
+    <meta property="og:description" content="A Rust library for servers and clients that speak frame-based binary protocols. Frame the bytes, route each message by ID, and keep the protocol out of the business logic.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+<script src="/wireframe-www/assets/js/scope.js" defer></script>  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/" aria-current="page">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/" aria-current="page">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content">
+<section class="wf-hero" aria-labelledby="hero-title">
+  <div class="wf-shell wf-hero__grid">
+    <div class="wf-hero__copy">
+      <h1 id="hero-title" class="wf-hero__title"><span class="wf-hero__kicker">A Rust router for binary protocols</span><img src="/wireframe-www/assets/logos/wordmark-1400.webp" srcset="/wireframe-www/assets/logos/wordmark-700.webp 700w, /wireframe-www/assets/logos/wordmark-1400.webp 1400w" sizes="(width < 640px) 90vw, 38rem" alt="wireframe" width="1400" height="357" fetchpriority="high"></h1>
+      <p class="wf-hero__line">Binary protocols. <span class="wf-glitch" data-text="Clear routes.">Clear routes.</span></p>
+      <p class="wf-hero__deck">Frame the bytes, route each message by ID, and wrap the work in middleware. Actix Web&rsquo;s shape, for protocols that aren&rsquo;t HTTP.</p>
+      <div class="wf-hero__actions"><a class="wf-btn" href="/wireframe-www/getting-started/">Get started<svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#arrow-right"></use></svg></a><a class="wf-btn wf-btn--quiet" href="/wireframe-www/guides/">Read the guides<svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#arrow-right"></use></svg></a></div>
+    </div>
+    <figure class="wf-scope" data-wf-scope aria-labelledby="scope-caption">
+      <div class="wf-scope__field">
+        <canvas class="wf-scope__beam" aria-hidden="true"></canvas>
+<svg class="wf-scope__svg" viewBox="0 0 720 350" role="img" aria-labelledby="scope-title scope-desc">
+  <title id="scope-title">A request routed by message ID</title>
+  <desc id="scope-desc">Bytes funnel into a FrameCodec, which cuts them into frames. The frames cross to an envelope with message ID 2 and correlation ID 7. The router matches ID 2 and sends it through middleware to the telemetry handler; the routes to the login and control handlers stay unlit. The reply returns along the floor carrying the same correlation ID.</desc>
+  <g class="wf-scope__strokes" aria-hidden="true">
+    <path data-beam="grid" d="M155.2 148.0 L14.0 162.5"/>
+    <path data-beam="grid" d="M170.6 151.2 L27.2 166.5"/>
+    <path data-beam="grid" d="M186.9 154.5 L41.2 170.8"/>
+    <path data-beam="grid" d="M204.0 158.1 L56.1 175.2"/>
+    <path data-beam="grid" d="M222.2 161.8 L71.9 180.0"/>
+    <path data-beam="grid" d="M241.3 165.7 L88.8 185.1"/>
+    <path data-beam="grid" d="M261.7 169.9 L106.8 190.5"/>
+    <path data-beam="grid" d="M283.2 174.3 L126.1 196.4"/>
+    <path data-beam="grid" d="M306.2 179.1 L146.8 202.6"/>
+    <path data-beam="grid" d="M330.6 184.1 L169.1 209.3"/>
+    <path data-beam="grid" d="M356.7 189.5 L193.2 216.6"/>
+    <path data-beam="grid" d="M384.6 195.2 L219.2 224.4"/>
+    <path data-beam="grid" d="M414.6 201.4 L247.4 233.0"/>
+    <path data-beam="grid" d="M446.8 208.0 L278.2 242.3"/>
+    <path data-beam="grid" d="M481.5 215.1 L311.9 252.4"/>
+    <path data-beam="grid" d="M519.1 222.9 L348.8 263.6"/>
+    <path data-beam="grid" d="M559.9 231.3 L389.7 275.9"/>
+    <path data-beam="grid" d="M604.2 240.4 L434.9 289.6"/>
+    <path data-beam="grid" d="M652.8 250.4 L485.4 304.8"/>
+    <path data-beam="grid" d="M706.0 261.3 L542.1 321.9"/>
+    <path data-beam="grid" d="M155.2 148.0 L706.0 261.3"/>
+    <path data-beam="grid" d="M129.4 150.7 L678.8 271.4"/>
+    <path data-beam="grid" d="M102.5 153.4 L649.2 282.3"/>
+    <path data-beam="grid" d="M74.3 156.3 L616.8 294.3"/>
+    <path data-beam="grid" d="M44.9 159.4 L581.3 307.4"/>
+    <path data-beam="grid" d="M14.0 162.5 L542.1 321.9"/>
+    <path data-beam="cyan" d="M170.7 144.7 L169.2 41.0 L71.8 42.2 L74.8 154.4 L170.7 144.7"/>
+    <path data-beam="cyan" d="M192.2 115.9 L191.9 88.3 L168.0 89.6 L168.4 117.7 L192.2 115.9"/>
+    <path data-beam="cyan" d="M170.7 144.7 L192.2 115.9"/>
+    <path data-beam="cyan" d="M169.2 41.0 L191.9 88.3"/>
+    <path data-beam="cyan" d="M71.8 42.2 L168.0 89.6"/>
+    <path data-beam="cyan" d="M74.8 154.4 L168.4 117.7"/>
+    <path data-beam="faint" d="M177.2 136.0 L176.1 55.3 L102.2 57.2 L104.2 142.9 L177.2 136.0"/>
+    <path data-beam="faint" d="M184.3 126.5 L183.5 70.9 L133.9 72.8 L135.1 130.8 L184.3 126.5"/>
+    <path data-beam="bits" d="M79.4 123.6 L180.3 106.3"/>
+    <path data-beam="bits" d="M78.6 93.2 L180.2 102.9"/>
+    <path data-beam="bits" d="M77.8 62.5 L180.2 99.4"/>
+    <path data-beam="mint" d="M227.2 153.2 L226.3 49.9 L153.6 51.5 L155.5 161.4 L227.2 153.2"/>
+    <path data-beam="amber" d="M202.4 117.6 L202.1 89.5 L181.0 90.7 L181.4 119.3 L202.4 117.6"/>
+    <path data-beam="amber" d="M195.4 116.6 L205.7 118.1 L205.4 97.3 L195.1 96.2 L195.4 116.6"/>
+    <path data-beam="amber" d="M212.3 115.2 L222.7 116.7 L222.6 96.3 L212.1 95.1 L212.3 115.2"/>
+    <path data-beam="amber" d="M195.4 116.6 L212.3 115.2"/>
+    <path data-beam="amber" d="M205.7 118.1 L222.7 116.7"/>
+    <path data-beam="amber" d="M205.4 97.3 L222.6 96.3"/>
+    <path data-beam="amber" d="M195.1 96.2 L212.1 95.1"/>
+    <path data-beam="amber" d="M217.4 119.7 L228.4 121.3 L228.2 99.9 L217.2 98.6 L217.4 119.7"/>
+    <path data-beam="amber" d="M234.6 118.3 L245.7 119.8 L245.6 98.7 L234.4 97.5 L234.6 118.3"/>
+    <path data-beam="amber" d="M217.4 119.7 L234.6 118.3"/>
+    <path data-beam="amber" d="M228.4 121.3 L245.7 119.8"/>
+    <path data-beam="amber" d="M228.2 99.9 L245.6 98.7"/>
+    <path data-beam="amber" d="M217.2 98.6 L234.4 97.5"/>
+    <path data-beam="amber" d="M241.0 123.1 L252.8 124.8 L252.7 102.6 L240.8 101.3 L241.0 123.1"/>
+    <path data-beam="amber" d="M258.4 121.6 L270.3 123.2 L270.2 101.3 L258.3 100.1 L258.4 121.6"/>
+    <path data-beam="amber" d="M241.0 123.1 L258.4 121.6"/>
+    <path data-beam="amber" d="M252.8 124.8 L270.3 123.2"/>
+    <path data-beam="amber" d="M252.7 102.6 L270.2 101.3"/>
+    <path data-beam="amber" d="M240.8 101.3 L258.3 100.1"/>
+    <path data-beam="mint" d="M317.3 164.6 L317.6 61.7 L253.7 63.9 L254.2 173.2 L317.3 164.6"/>
+    <path data-beam="magenta" d="M262.2 80.5 L267.1 74.0 L272.1 80.0 L267.2 86.5 L262.2 80.5"/>
+    <path data-beam="mint" d="M440.2 206.2 L443.0 43.9 L356.9 45.6 L355.7 223.1 L440.2 206.2"/>
+    <path data-beam="mint" d="M401.2 104.4 L382.5 132.4 L400.5 156.2 L418.5 128.4 L401.2 104.4"/>
+    <path data-beam="faint" d="M401.2 104.4 L400.5 156.2"/>
+    <path data-beam="faint" d="M382.5 132.4 L418.5 128.4"/>
+    <path data-beam="route" data-pulse="true" d="M78.6 93.2 L191.8 104.3 L286.6 116.1 L400.9 130.3 L502.2 143.0 L577.7 152.4"/>
+    <path data-beam="dim" d="M630.8 93.1 L633.4 28.1 L522.3 28.5 L520.3 103.6 L630.8 93.1"/>
+    <path data-beam="dim" data-dashed="true" d="M400.9 130.3 L504.2 60.5 L580.7 63.3"/>
+    <path data-beam="mint" d="M627.5 175.7 L630.0 111.9 L519.7 125.3 L517.8 198.7 L627.5 175.7"/>
+    <path data-beam="dim" d="M624.2 256.6 L626.8 194.1 L517.2 219.8 L515.3 291.6 L624.2 256.6"/>
+    <path data-beam="dim" data-dashed="true" d="M400.9 130.3 L500.2 223.9 L574.7 239.6"/>
+    <path data-beam="magenta" d="M615.5 155.8 L620.2 146.9 L624.1 154.2 L619.6 163.0 L615.5 155.8"/>
+    <path data-beam="amber" d="M472.3 153.6 L472.9 125.0"/>
+    <path data-beam="amber" d="M484.7 155.3 L485.4 126.3"/>
+    <path data-beam="return" data-dashed="true" d="M556.9 187.6 L488.9 287.9 L116.5 182.7 L155.5 161.4"/>
+    <path data-beam="magenta" d="M323.9 247.2 L346.5 247.7 L347.2 242.1 L325.2 241.6 L323.9 247.2"/>
+  </g>
+  <g class="wf-scope__bitstream" aria-hidden="true">
+    <text x="14.7" y="51.9" class="wf-scope__bits">00010110</text>
+    <text x="15.3" y="70.0" class="wf-scope__bits">11001000</text>
+    <text x="15.9" y="88.1" class="wf-scope__bits">01111010</text>
+    <text x="16.5" y="106.0" class="wf-scope__bits">00101100</text>
+    <text x="17.1" y="123.9" class="wf-scope__bits">11011110</text>
+    <text x="17.7" y="141.7" class="wf-scope__bits">10010000</text>
+  </g>
+  <g class="wf-scope__labels" aria-hidden="true">
+    <text x="156.6" y="34.8" class="wf-scope__name">FrameCodec</text>
+    <text x="156.8" y="49.6" class="wf-scope__small">cuts frames</text>
+    <text x="256.0" y="192.8" class="wf-scope__name">Envelope</text>
+    <text x="256.1" y="210.1" class="wf-scope__small">id 2 · correlation 7</text>
+    <text x="358.9" y="22.9" class="wf-scope__name">Router</text>
+    <text x="358.8" y="43.0" class="wf-scope__small">route by message ID</text>
+    <text x="529.4" y="43.5" class="wf-scope__dim">id 1 · login</text>
+    <text x="526.7" y="139.0" class="wf-scope__name">id 2 · telemetry</text>
+    <text x="524.2" y="232.4" class="wf-scope__dim">id 3 · control</text>
+    <text x="457.9" y="179.4" class="wf-scope__small">middleware</text>
+    <text x="268.5" y="270.7" class="wf-scope__small">reply · same correlation ID</text>
+  </g>
+</svg>      </div>
+      <figcaption id="scope-caption" class="wf-scope__caption">One request&rsquo;s path: bytes become frames, a frame becomes an envelope, and its message ID selects one handler. The magenta marks are the correlation ID, carried out and back.</figcaption>
+    </figure>
+  </div>
+  <div class="wf-shell">
+    <ul class="wf-capability-row">      <li><a href="/wireframe-www/guides/routing/"><span class="wf-capability-row__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#route"></use></svg></span><span class="wf-label">Routing</span><span>By message ID, one handler each</span></a></li>      <li><a href="/wireframe-www/guides/codecs/"><span class="wf-capability-row__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#frame"></use></svg></span><span class="wf-label">Codecs</span><span>One trait for any wire format</span></a></li>      <li><a href="/wireframe-www/guides/middleware/"><span class="wf-capability-row__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#gates"></use></svg></span><span class="wf-label">Middleware</span><span>Wraps every route, in and out</span></a></li>      <li><a href="/wireframe-www/guides/client/"><span class="wf-capability-row__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#outbound"></use></svg></span><span class="wf-label">Client</span><span>The same codec and envelope, outbound</span></a></li>    </ul>
+    <dl class="wf-readout" aria-label="At a glance">
+      <div><dt>Release</dt><dd>0.3.0</dd></div>
+      <div><dt>crates.io</dt><dd>6 April 2026</dd></div>
+      <div><dt>Runtime</dt><dd>Tokio</dd></div>
+      <div><dt>Licence</dt><dd>ISC</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="wf-steps" aria-labelledby="steps-title">
+  <div class="wf-shell">
+    <h2 id="steps-title" class="sr-only">Three steps</h2>
+    <ol class="wf-steps__grid">
+      <li class="wf-panel">
+        <h3 class="wf-panel__title"><span>1</span> Describe the messages</h3>
+        <figure class="wf-code" data-wf-sample="tests/first_server.rs" data-wf-anchor="messages" data-wf-copy="code" data-wf-copy-label="first_server.rs">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">first_server.rs</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="first_server.rs, working example"><div class="wf-syntax"><pre><span></span><code><span class="cp">#[derive(bincode::Encode, bincode::BorrowDecode, Debug)]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Ping</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="cp">#[derive(bincode::Encode, bincode::BorrowDecode, Debug, PartialEq)]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Pong</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">body</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">const</span><span class="w"> </span><span class="n">PING</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+</div>
+</figure>
+      </li>
+      <li class="wf-panel">
+        <h3 class="wf-panel__title"><span>2</span> Route and answer</h3>
+        <figure class="wf-code" data-wf-sample="tests/first_server.rs" data-wf-anchor="app" data-wf-copy="code" data-wf-copy-label="first_server.rs">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">first_server.rs</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="first_server.rs, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">fn</span><span class="w"> </span><span class="nf">build_app</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">wireframe</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">WireframeApp</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">handler</span><span class="p">:</span><span class="w"> </span><span class="nc">Handler</span><span class="o">&lt;</span><span class="n">Envelope</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="o">|</span><span class="n">env</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">Envelope</span><span class="o">|</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">env</span><span class="p">.</span><span class="n">id</span><span class="p">();</span>
+<span class="w">        </span><span class="nb">Box</span><span class="p">::</span><span class="n">pin</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;routed message {id}&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="n">WireframeApp</span><span class="p">::</span><span class="n">new</span><span class="p">()</span><span class="o">?</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="n">PING</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">AnswerPings</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+      </li>
+      <li class="wf-panel wf-panel--reduction">
+        <h3 class="wf-panel__title"><span>3</span> Complexity, reduced</h3>
+        <figure class="wf-reduction" data-wf-scope>
+          <div class="wf-scope__field"><canvas class="wf-scope__beam" aria-hidden="true"></canvas><svg class="wf-scope__svg" viewBox="0 0 360 200" role="img" aria-label="A tangle of crossing paths becomes three stacked layers.">
+  <g class="wf-scope__strokes" aria-hidden="true">
+    <path data-beam="faint" d="M26 156 L100 51"/>
+    <path data-beam="faint" d="M81 120 L71 87"/>
+    <path data-beam="faint" d="M19 80 L37 90"/>
+    <path data-beam="faint" d="M97 95 L26 143"/>
+    <path data-beam="faint" d="M129 31 L26 156"/>
+    <path data-beam="faint" d="M97 95 L28 124"/>
+    <path data-beam="faint" d="M54 141 L26 143"/>
+    <path data-beam="faint" d="M39 155 L62 85"/>
+    <path data-beam="faint" d="M129 31 L36 72"/>
+    <path data-beam="cyan" d="M81 120 L106 48 L19 80 L54 141 L109 112 L92 121 L37 90 L39 155 L26 143 L28 124 L62 85 L129 31 L26 156 L85 41 L148 161 L33 87 L36 72 L100 51 L110 35 L41 142 L71 87 L97 95"/>
+    <path data-beam="route" d="M168 100 L204 100"/>
+    <path data-beam="amber" d="M196 93 L205 100 L196 107"/>
+    <path data-beam="mint" d="M220 54 L282 34 L344 54 L282 74 L220 54"/>
+    <path data-beam="mint" d="M220 100 L282 80 L344 100 L282 120 L220 100"/>
+    <path data-beam="mint" d="M220 146 L282 126 L344 146 L282 166 L220 146"/>
+    <path data-beam="faint" d="M220 54 L220 146"/>
+    <path data-beam="faint" d="M344 54 L344 146"/>
+    <path data-beam="amber" d="M282 34 L282 166"/>
+  </g>
+  <g class="wf-scope__labels" aria-hidden="true">
+    <text x="296" y="58" class="wf-scope__small">codec</text>
+    <text x="296" y="104" class="wf-scope__small">routes</text>
+    <text x="296" y="150" class="wf-scope__small">middleware</text>
+  </g>
+</svg></div>
+          <figcaption class="wf-reduction__legend"><span><strong>By hand</strong> framing, parsing, dispatch, state</span><span><strong>With wireframe</strong> a codec, routes, middleware</span></figcaption>
+        </figure>
+      </li>
+    </ol>
+    <p class="wf-steps__proof">Both panels are cut from <a href="/wireframe-www/getting-started/">the getting-started program</a>, compiled and run against wireframe 0.3.0 on 2026-10-31. In 0.3.0 a routed handler returns nothing; the program&rsquo;s middleware writes the <code>Pong</code>.</p>
+  </div>
+</section>
+
+<section class="wf-journey" aria-labelledby="journey-title">
+  <div class="wf-shell wf-journey__grid">
+    <div class="wf-journey__intro">
+      <h2 id="journey-title">Frame. Route. Handle.</h2>
+      <p>Every request takes the same path. A codec cuts the bytes into frames, the router reads each envelope&rsquo;s message ID, and that route&rsquo;s middleware wraps its handler. The reply retraces the way it came.</p>
+      <p class="wf-journey__note">Fragment reassembly is a transport step and optional. Message assembly, for protocols that spread one message across several frames, is a separate step that runs after it.</p>
+      <a class="wf-arrow-link" href="/wireframe-www/architecture/">The stack, layer by layer <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#arrow-right"></use></svg></a>
+    </div>
+    <ol class="wf-track">      <li class="wf-track__stop" id="station-input">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Input</p>
+        <h3>Bytes off the socket</h3>
+        <p>A Tokio TCP stream. If the server expects a preamble, it is read and validated before any frame.</p>
+      </li>      <li class="wf-track__stop" id="station-framing">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Framing</p>
+        <h3>Cut at the length prefix</h3>
+        <p>A FrameCodec decodes frames. The default reads a 4-byte big-endian length prefix and refuses frames over 1,024 bytes.</p>
+      </li>      <li class="wf-track__stop wf-track__stop--optional" id="station-reassembly">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Reassembly <span class="wf-track__tag">Optional</span></p>
+        <h3>Fragments, rejoined</h3>
+        <p>With fragmentation enabled, fragments are rejoined before anything is decoded, bounded by size and by time.</p>
+      </li>      <li class="wf-track__stop" id="station-envelope">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Envelope</p>
+        <h3>Read the envelope</h3>
+        <p>The serializer decodes an Envelope: a message ID, an optional correlation ID, and the payload bytes.</p>
+      </li>      <li class="wf-track__stop" id="station-deflection">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Deflection</p>
+        <h3>Route by message ID</h3>
+        <p>One handler per ID. An ID with no route is logged and dropped; registering an ID twice fails at setup.</p>
+      </li>      <li class="wf-track__stop" id="station-modulation">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Modulation</p>
+        <h3>Wrap the handler</h3>
+        <p>The route’s middleware wraps its handler, so it sees the request on the way in and the reply on the way out.</p>
+      </li>      <li class="wf-track__stop" id="station-dwell">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Dwell</p>
+        <h3>Handle the message</h3>
+        <p>The handler runs with the envelope it was sent. In 0.3.0 it returns nothing; the default reply echoes the payload.</p>
+      </li>      <li class="wf-track__stop" id="station-retrace">
+        <span class="wf-track__node" aria-hidden="true"></span>
+        <p class="wf-label">Retrace</p>
+        <h3>Serialize, frame, send</h3>
+        <p>The reply keeps the request’s correlation ID and leaves through the serializer, optional fragmentation, and the codec.</p>
+      </li>    </ol>
+  </div>
+</section>
+
+<section class="wf-capabilities" aria-labelledby="capabilities-title">
+  <div class="wf-shell">
+    <h2 id="capabilities-title">What it carries</h2>
+    <div class="wf-bento">
+      <a class="wf-bento__cell wf-bento__cell--codec" href="/wireframe-www/guides/codecs/">
+        <span class="wf-bento__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#frame"></use></svg></span>
+        <h3>Any wire format, one trait</h3>
+        <p><code>FrameCodec</code> describes any wire format: how to cut frames, where the payload sits, and where a correlation ID lives.</p>
+        <ul class="wf-bento__list">
+          <li><strong>Hotline</strong><span>20-byte header, big-endian lengths, a transaction ID</span></li>
+          <li><strong>MySQL</strong><span>3-byte little-endian length, 1-byte sequence number</span></li>
+          <li><strong>RESP</strong><span>Typed lines: simple strings, integers, bulk strings</span></li>
+        </ul>
+        <div class="wf-frame-diagram" aria-hidden="true"><span class="wf-frame-diagram__len">00 00 00 0c</span><span class="wf-frame-diagram__body">12 payload bytes &hellip;</span></div>
+        <p class="wf-bento__caption">The default frame: a 4-byte big-endian length, then the payload. The three codecs above ship as worked examples.</p>
+      </a>
+      <a class="wf-bento__cell" href="/wireframe-www/guides/middleware/">
+        <span class="wf-bento__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#gates"></use></svg></span>
+        <h3>Answer in middleware</h3>
+        <p>A <code>Transform</code> wraps every route&rsquo;s handler. Setup and teardown hooks carry per-connection state.</p>
+      </a>
+      <a class="wf-bento__cell wf-bento__cell--raised" href="/wireframe-www/guides/large-messages/">
+        <span class="wf-bento__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#budget"></use></svg></span>
+        <h3>Large messages, bounded</h3>
+        <p>Fragmentation, message assembly, and per-connection memory budgets that slow reads at 80% and close the connection past the cap.</p>
+      </a>
+      <a class="wf-bento__cell" href="/wireframe-www/guides/client/">
+        <span class="wf-bento__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#outbound"></use></svg></span>
+        <h3>One definition, both ends</h3>
+        <p><code>WireframeClient</code> correlates replies, reads streams, and pools warm sockets.</p>
+      </a>
+      <a class="wf-bento__cell wf-bento__cell--raised" href="/wireframe-www/guides/testing/">
+        <span class="wf-bento__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#proof"></use></svg></span>
+        <h3>Test at the frame</h3>
+        <p>Feed frames one byte at a time, fragment a payload, or pace a slow reader under paused time.</p>
+      </a>
+      <a class="wf-bento__cell wf-bento__cell--image" href="/wireframe-www/guides/streaming/">
+        <figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/queues.webp" srcset="/wireframe-www/assets/images/queues-half.webp 768w, /wireframe-www/assets/images/queues.webp 1536w" sizes="(width &lt; 768px) 100vw, 40vw" alt="Two cyan beam tracks meet at a mint faceted rhombus. The upper track carries three closely spaced cubes, the lower two widely spaced ones; a single amber beam leaves the junction carrying three amber cubes with one cyan cube from the slow track let in between them." width="1536" height="1024" decoding="async" loading="lazy"></figure>
+        <div class="wf-bento__copy">
+          <span class="wf-bento__icon"><svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#pulses"></use></svg></span>
+          <h3>Push and streams, as parts</h3>
+          <p>Priority push queues, a fair connection actor, and multi-frame responses, ready to drive.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="wf-world" aria-labelledby="world-title">
+  <div class="wf-world__plate"><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/scope.webp" srcset="/wireframe-www/assets/images/scope-half.webp 800w, /wireframe-www/assets/images/scope.webp 1600w" sizes="100vw" alt="A perspective grid floor drawn in glowing vector lines. A stream of cyan wireframe cubes flows in from the left through a tall mint rhombus gateway; beyond it, dim dashed paths lead to two distant terminal frames, while one amber path with travelling pulses of light carries the cubes, one of them magenta, to a third terminal that glows mint. A dashed return line curves back along the floor." width="1600" height="900" decoding="async" loading="lazy"></figure></div>
+  <div class="wf-shell wf-world__body">
+    <h2 id="world-title">The scope</h2>
+    <p>Every frame is a stroke. A vector display draws only lines: the beam is steered from point to point, lit where it means something and blanked where it doesn&rsquo;t. wireframe steers messages the same way. The codec cuts the byte stream into frames, the router deflects each one to exactly one handler, and where the beam stops, the trace burns brightest.</p>
+    <p class="wf-world__key">On every plate: <span class="wf-key wf-key--mint">mint</span> is structure and the route in use, <span class="wf-key wf-key--cyan">cyan</span> is a frame, <span class="wf-key wf-key--amber">amber</span> is traffic on the move, and <span class="wf-key wf-key--magenta">magenta</span> marks the one message being followed.</p>
+    <a class="wf-arrow-link" href="/wireframe-www/scope/">How the scope is drawn <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#arrow-right"></use></svg></a>
+  </div>
+</section>
+
+<section class="wf-band" aria-labelledby="mxd-title">
+  <div class="wf-shell wf-band__grid">
+    <div>
+      <h2 id="mxd-title">Already carrying traffic</h2>
+      <p>mxd, df12&rsquo;s Hotline server, depends on wireframe 0.3.0. Its transport adapter frames and routes the Hotline protocol; its domain crate never imports wireframe. Hotline&rsquo;s framing ships with wireframe too, as a worked codec example.</p>
+      <a class="wf-arrow-link" href="https://df12.studio/mxd/">Read about mxd <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#arrow-right"></use></svg></a>
+    </div>
+    <dl class="wf-band__facts">
+      <div><dt>Protocol</dt><dd>Hotline, 1990s Mac file sharing and chat</dd></div>
+      <div><dt>Transport</dt><dd><code>mxd-wireframe-server</code>, on wireframe 0.3.0</dd></div>
+      <div><dt>Boundary</dt><dd>Wireframe types stop at the transport adapter</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="wf-install" aria-labelledby="install-title">
+  <div class="wf-shell wf-install__grid">
+    <div>
+      <h2 id="install-title">Add it to Cargo.toml</h2>
+      <p>The sample crate&rsquo;s dependencies, exactly as compiled. <code>pool</code> and <code>testkit</code> are opt-in features; <code>metrics</code> and the bincode serializer are on by default.</p>
+<aside class="wf-callout wf-callout--warning" aria-label="Pin tokio-util 0.7.19"><p class="wf-callout__kind">Warning</p><p class="wf-callout__title">Pin tokio-util 0.7.19</p><p>wireframe 0.3.0 does not compile against tokio-util 0.7.20, which added a second <code>Encoder</code> for <code>LengthDelimitedCodec</code>. Pin the previous release in the lockfile until a fixed wireframe ships.</p></aside>      <div class="wf-install__actions"><a class="wf-btn" href="/wireframe-www/getting-started/">Get started<svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#arrow-right"></use></svg></a></div>
+    </div>
+    <div class="wf-install__code">
+      <figure class="wf-code" data-wf-sample="Cargo.toml" data-wf-anchor="deps" data-wf-copy="code" data-wf-copy-label="Cargo.toml">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Cargo.toml</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Cargo.toml, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">[dependencies]</span>
+<span class="n">wireframe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;=0.3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pool&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;testkit&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="n">tokio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;macros&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;net&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rt-multi-thread&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sync&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;test-util&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="n">async-trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.89&quot;</span>
+<span class="n">bincode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.0.1&quot;</span>
+<span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.10.1&quot;</span>
+<span class="n">futures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.3.31&quot;</span>
+<span class="c1"># wireframe 0.3.0 does not compile against tokio-util 0.7.20, which adds a</span>
+<span class="c1"># second `Encoder` impl for `LengthDelimitedCodec`; Cargo.lock pins 0.7.19.</span>
+<span class="n">tokio-util</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.7.16&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;codec&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rt&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<figure class="wf-code wf-code--command" data-wf-copy="console" data-wf-copy-label="Pin tokio-util">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">Pin tokio-util</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="Pin tokio-util"><pre><code>cargo update -p tokio-util --precise 0.7.19</code></pre></div>
+</figure>    </div>
+  </div>
+</section>
+<div class="wf-tagline"><p class="wf-shell"><span>Binary protocols</span><span aria-hidden="true">→</span><span>clear routes</span></p></div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>

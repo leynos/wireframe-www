@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="wireframe">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The scope · wireframe</title>
+    <meta name="description" content="How the wireframe site is drawn: a vector display driven hard, the beam colours and their contrast, the typefaces, the logotype, and where the illustrations came from.">
+    <meta property="og:title" content="The scope · wireframe">
+    <meta property="og:description" content="How the wireframe site is drawn: a vector display driven hard, the beam colours and their contrast, the typefaces, the logotype, and where the illustrations came from.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
+    <meta name="theme-color" content="#030e0c">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
+    <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
+    <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+  </head>
+  <body>
+    <a class="wf-skip" href="#main-content">Skip to content</a>
+    <header class="wf-mast">
+      <div class="wf-shell wf-mast__inner">
+        <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
+        <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+      </div>
+    </header>
+    <main id="main-content"><header class="wf-page-head">
+  <div class="wf-shell">
+    <div class="wf-page-head__copy">
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li aria-current="page">The scope</li></ol></nav>
+      <h1>The scope</h1>
+      <p class="wf-deck">How this site is drawn, and why a frame router looks like a vector display driven hard.</p>
+      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+    </div>  </div>
+</header>
+<div class="wf-shell wf-landing wf-field">
+  <section aria-labelledby="metaphor">
+    <h2 id="metaphor">Every frame is a stroke</h2>
+    <p class="wf-landing__lede">Every df12 tool comes with a world. wireframe&rsquo;s is an X-Y vector display: no raster and no pixels, only a beam steered from point to point, lit where it means something and blanked where it doesn&rsquo;t. A frame router does the same job with messages, and the metaphor is held to the library&rsquo;s real structure. Where it would mislead, it stops.</p>
+    <div class="wf-table-scroll" tabindex="0" role="region" aria-label="The scope and what it stands for"><table class="wf-field__table">
+      <thead><tr><th scope="col">On the scope</th><th scope="col">In wireframe</th><th scope="col">As drawn</th></tr></thead>
+      <tbody><tr><td>The beam</td><td>One request’s path</td><td>A bright line drawn from point to point</td></tr><tr><td>The display list</td><td>The incoming byte stream</td><td>Cyan bits marching into a funnel</td></tr><tr><td>A stroke</td><td>A frame, cut by the FrameCodec</td><td>A cyan wireframe box</td></tr><tr><td>Deflection</td><td>The router choosing one route by message ID</td><td>One lit route; the others stay dark and dashed</td></tr><tr><td>Modulation</td><td>Middleware around the handler</td><td>Amber gates the beam crosses, in and out</td></tr><tr><td>Dwell</td><td>A handler</td><td>Where the beam stops and the trace burns brightest</td></tr><tr><td>Blanking</td><td>A fragmented message</td><td>One stroke drawn in pieces, with dark gaps between</td></tr><tr><td>Retrace</td><td>The reply, encoded and framed</td><td>A dashed path back along the floor</td></tr><tr><td>Persistence</td><td>State that outlives a frame: sessions, connection state</td><td>The afterglow a trace leaves behind</td></tr></tbody>
+    </table></div>
+    <p>A routed message selects one handler. No drawing shows one beam splitting between handlers, because wireframe does not broadcast.</p>
+  </section>
+
+  <section aria-labelledby="beam">
+    <h2 id="beam">The beam</h2>
+    <p>The hero scene on the home page is drawn twice. At build time a script lays the scene out in three dimensions and projects it to labelled SVG, which is the whole picture without script, with reduced motion, or with more contrast. In the browser, a canvas redraws the same strokes the way a vector monitor does: it is never cleared, so moving light leaves phosphor trails; glow adds up where lines cross and where the beam dwells at a corner; a faint flyback line betrays where the beam travelled while blanked; and the deflection drifts by a fraction of a pixel. Every few seconds a deflection glitch throws a ghost of the picture sideways. The pulses on the lit route move at the picture&rsquo;s pace, not the protocol&rsquo;s.</p>
+  </section>
+
+  <section aria-labelledby="beams">
+    <h2 id="beams">The beam system</h2>
+    <p>Flat colour is authoritative; glow is optional emphasis. Each colour has one job, and hue is never the only cue: every coloured mark also has a shape, a line style, or a label. The contrast figures are for the flat colour as text on the night field.</p>
+    <ul class="wf-swatches"><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--night"></div><div class="wf-swatch__body"><strong>Night</strong><code>#030e0c</code><span>The field every page is drawn on</span><span>Ground</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--surface"></div><div class="wf-swatch__body"><strong>Surface</strong><code>#091a16</code><span>Panels and code</span><span>Ground</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--raised"></div><div class="wf-swatch__body"><strong>Raised</strong><code>#102720</code><span>A panel inside a panel</span><span>Ground</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--text"></div><div class="wf-swatch__body"><strong>Text</strong><code>#f1fff8</code><span>Body and interface copy</span><span>19.03:1 on night</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--muted"></div><div class="wf-swatch__body"><strong>Muted text</strong><code>#b8d5ca</code><span>Secondary descriptions</span><span>12.51:1 on night</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--mint"></div><div class="wf-swatch__body"><strong>Vector mint</strong><code>#7cffb3</code><span>Identity, the route in use, the primary action</span><span>15.68:1 on night</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--cyan"></div><div class="wf-swatch__body"><strong>Cyan</strong><code>#00ffff</code><span>Frames and decoded data</span><span>15.62:1 on night</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--amber"></div><div class="wf-swatch__body"><strong>Amber</strong><code>#ffb347</code><span>Traffic on the move; warnings</span><span>11.00:1 on night</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--magenta"></div><div class="wf-swatch__body"><strong>Magenta</strong><code>#ff6ad5</code><span>The one selected or correlated object</span><span>7.72:1 on night</span></div></li><li class="wf-swatch"><div class="wf-swatch__chip wf-swatch__chip--error"></div><div class="wf-swatch__body"><strong>Error</strong><code>#ff687a</code><span>Errors only, never decoration</span><span>7.01:1 on night</span></div></li></ul>
+    <p>Under <code>prefers-contrast: more</code> every halo is removed and the flat cores remain. Under <code>prefers-reduced-motion</code> the beam stays off, the glitch never fires, and the journey rail is lit from the start.</p>
+  </section>
+
+  <section aria-labelledby="type">
+    <h2 id="type">Type and logotype</h2>
+    <p><strong>Sintony</strong> sets every word of interface and prose, at its two distributed weights. <strong>Monaspace Krypton</strong> sets code and byte sequences, with ligatures off so that <code>-&gt;</code>, <code>=&gt;</code>, and <code>::</code> stay distinct. Both are SIL Open Font License faces, served from this site.</p>
+    <p>The logotype is the approved artwork, published as it was drawn rather than retyped or redrawn: lower-case letters built from beam lattices, beside a faceted rhombus. Its near-black ground is keyed to transparency, treating the art as light emitted over black, so its own glow carries it on every surface. The favicon is the rhombus alone.</p>
+    <div class="wf-field__marks">
+      <img src="/wireframe-www/assets/logos/wordmark-1400.webp" alt="The wireframe wordmark" width="1400" height="357">
+      <img src="/wireframe-www/assets/logos/symbol-192.webp" alt="The wireframe symbol, a faceted rhombus" width="192" height="192">
+    </div>
+  </section>
+
+  <section aria-labelledby="plates">
+    <h2 id="plates">The plates</h2>
+    <p>The illustrations were generated with gpt-image-2 on 31 October 2026 and checked by eye. Every prompt asked for the same thing: thin beam lines on a green-black field, hot vertices, phosphor trails, one lit route, and nothing a raster would make &ndash; no scanlines, pixels, dithering, or colour fringing &ndash; and no text, numbers, people, or vehicles. Anything that has to be read is in the HTML beside a plate, never in it.</p>
+    <div class="wf-field__plates">
+<figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/queues.webp" srcset="/wireframe-www/assets/images/queues-half.webp 768w, /wireframe-www/assets/images/queues.webp 1536w" sizes="(width &lt; 768px) 100vw, 50vw" alt="Two cyan beam tracks meet at a mint faceted rhombus. The upper track carries three closely spaced cubes, the lower two widely spaced ones; a single amber beam leaves the junction carrying three amber cubes with one cyan cube from the slow track let in between them." width="1536" height="1024" decoding="async" loading="lazy"><figcaption><span class="wf-label">Two queues</span><span>High and low priority share one connection, and the low queue still gets its turn.</span></figcaption></figure><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/fragments.webp" srcset="/wireframe-www/assets/images/fragments-half.webp 768w, /wireframe-www/assets/images/fragments.webp 1536w" sizes="(width &lt; 768px) 100vw, 50vw" alt="A long cyan wireframe slab, divided into four sections, separates into four short boxes that travel along a faint amber arc with blank gaps between them, and arrive inside a mint frame on the right, where they sit joined again as one long slab with glowing joints." width="1536" height="1024" decoding="async" loading="lazy"><figcaption><span class="wf-label">Fragments</span><span>Too long for one frame, so it crosses in pieces and is rejoined before any handler sees it.</span></figcaption></figure><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/outbound.webp" srcset="/wireframe-www/assets/images/outbound-half.webp 768w, /wireframe-www/assets/images/outbound.webp 1536w" sizes="(width &lt; 768px) 100vw, 50vw" alt="A mint wireframe stack of three planes on the left sends an amber beam carrying two cyan cubes and a small magenta rhombus to a tall mint terminal frame on the right; below it a dashed return line carries a matching magenta rhombus back." width="1536" height="1024" decoding="async" loading="lazy"><figcaption><span class="wf-label">Outbound</span><span>The client leaves with a mark and accepts only the reply that carries it back.</span></figcaption></figure><figure class="wf-plate">
+  <img src="/wireframe-www/assets/images/calibration.webp" srcset="/wireframe-www/assets/images/calibration-half.webp 768w, /wireframe-www/assets/images/calibration.webp 1536w" sizes="(width &lt; 768px) 100vw, 50vw" alt="On the left, an oscilloscope graticule holds a bright mint three-lobed Lissajous figure with a faint afterglow of the previous trace. On the right, an oval loop carries a cyan slab in several separate pieces along its far side and whole along its near side, with a small amber pulse where the pieces rejoin." width="1536" height="1024" decoding="async" loading="lazy"><figcaption><span class="wf-label">Calibration</span><span>Feed it round in pieces on the far side; check it arrives whole on the near side.</span></figcaption></figure>    </div>
+    <p>Legal pages carry no plates and no glow.</p>
+  </section>
+</div>
+</main>
+    <footer class="wf-footer">
+      <div class="wf-shell wf-footer__grid">
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
+      </div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+    </footer>
+  </body>
+</html>
