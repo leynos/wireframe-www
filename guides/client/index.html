@@ -8,14 +8,15 @@
     <meta property="og:title" content="The client runtime · wireframe">
     <meta property="og:description" content="The client uses the server’s codec, serializer, and envelope, so both ends of a protocol share one definition.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
-    <meta name="theme-color" content="#030e0c">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/vendor/plates/posters/27.webp">
+    <meta name="theme-color" content="#040911">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
     <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
     <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
     <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+    <script src="/wireframe-www/assets/js/plates.js" defer></script>
   </head>
   <body>
     <a class="wf-skip" href="#main-content">Skip to content</a>
@@ -23,8 +24,8 @@
       <div class="wf-shell wf-mast__inner">
         <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
         <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
-        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
-        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
       </div>
     </header>
     <main id="main-content"><header class="wf-page-head">
@@ -33,20 +34,23 @@
       <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">The client runtime</li></ol></nav>
       <h1>The client runtime</h1>
       <p class="wf-deck">The client uses the server’s codec, serializer, and envelope, so both ends of a protocol share one definition.</p>
-      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
-    </div><figure class="wf-plate">
-  <img src="/wireframe-www/assets/images/outbound.webp" srcset="/wireframe-www/assets/images/outbound-half.webp 768w, /wireframe-www/assets/images/outbound.webp 1536w" sizes="(width &lt; 1024px) 100vw, 560px" alt="A mint wireframe stack of three planes on the left sends an amber beam carrying two cyan cubes and a small magenta rhombus to a tall mint terminal frame on the right; below it a dashed return line carries a matching magenta rhombus back." width="1536" height="1024" decoding="async" loading="eager" fetchpriority="high"><figcaption><span class="wf-label">Outbound</span><span>The client leaves with a mark and accepts only the reply that carries it back.</span></figcaption></figure>  </div>
+      <p class="wf-version">wireframe 0.4.0-alpha1 · samples verified 2026-11-19</p>
+    </div><figure class="wf-plate wf-plate--head" data-wf-plate="18" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js" data-wf-plate-eager>
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/18.webp" alt="" width="929" height="494" decoding="async" fetchpriority="high"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-18-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-18-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 18 · Civic setting</span> <strong id="plate-18-title" class="wf-plate__title">Civic sphere.</strong> A geodesic shell encloses an illuminated skyline, with signals arriving from outside. <span class="wf-plate__source">Civic setting for the Common Signal series.</span></figcaption>
+</figure>  </div>
 </header>
 <div class="wf-shell wf-article-grid">
   <aside class="wf-aside">
-    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#connect">Build and connect</a></li><li><a href="#correlate">Correlated calls</a></li><li><a href="#streams">Read a streamed reply</a></li><li><a href="#hooks">Hooks and tracing</a></li><li><a href="#pools">Pools of warm sockets</a></li></ul></nav>
+    <div class="wf-aside__rail"><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#connect">Build and connect</a></li><li><a href="#correlate">Correlated calls</a></li><li><a href="#streams">Read a streamed reply</a></li><li><a href="#hooks">Hooks and tracing</a></li><li><a href="#pools">Connection pools</a></li></ul></nav>
 <nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/" aria-current="page">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></div>
-    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#connect">Build and connect</a></li><li><a href="#correlate">Correlated calls</a></li><li><a href="#streams">Read a streamed reply</a></li><li><a href="#hooks">Hooks and tracing</a></li><li><a href="#pools">Pools of warm sockets</a></li></ul></nav>
+    <details class="wf-aside__menu"><summary>Contents and guides</summary><nav aria-label="On this page"><p class="wf-label">On this page</p><ul class="wf-toc"><li><a href="#connect">Build and connect</a></li><li><a href="#correlate">Correlated calls</a></li><li><a href="#streams">Read a streamed reply</a></li><li><a href="#hooks">Hooks and tracing</a></li><li><a href="#pools">Connection pools</a></li></ul></nav>
 <nav aria-label="Guides"><p class="wf-label">Guides</p><ul class="wf-toc wf-toc--guides"><li><a href="/wireframe-www/guides/routing/">Routes, envelopes, and handlers</a></li><li><a href="/wireframe-www/guides/codecs/">Frame codecs and preambles</a></li><li><a href="/wireframe-www/guides/middleware/">Middleware and lifecycle hooks</a></li><li><a href="/wireframe-www/guides/streaming/">Streaming, push, and sessions</a></li><li><a href="/wireframe-www/guides/large-messages/">Fragmentation and memory budgets</a></li><li><a href="/wireframe-www/guides/client/" aria-current="page">The client runtime</a></li><li><a href="/wireframe-www/guides/testing/">Testing at the frame</a></li><li><a href="/wireframe-www/guides/production/">Running in production</a></li></ul></nav></details>
   </aside>
   <article class="wf-article">
 <section aria-labelledby="connect"><h2 id="connect">Build and connect</h2>
-<p><code>WireframeClient::builder()</code> starts from the server&rsquo;s defaults: a 4-byte big-endian length prefix, 1,024-byte frames, and the bincode serializer. The builder changes them before connecting. <code>codec_config</code> must agree with the server&rsquo;s <code>buffer_capacity</code>: if small requests work and larger ones fail, the two limits disagree.</p>
+<p><code>WireframeClient::builder()</code> starts from the server&rsquo;s defaults: a 4-byte big-endian length prefix, 1,024-byte frames, and the bincode serializer. The builder changes them before connecting. <code>codec_config</code> must agree with the server&rsquo;s <code>buffer_capacity</code>: if small requests work and larger ones fail, the two limits disagree. The client shares the server&rsquo;s definitions with one exception: it has no fragmentation support, so against a fragmenting server it sees <code>FRAG</code> payloads.</p>
 <figure class="wf-code" data-wf-sample="tests/client.rs" data-wf-anchor="call" data-wf-copy="code" data-wf-copy-label="client.rs · configure, connect, call">
   <figcaption class="wf-code__bar"><span class="wf-code__name">client.rs · configure, connect, call</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
   <div class="wf-code__scroll" tabindex="0" role="region" aria-label="client.rs · configure, connect, call, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WireframeClient</span><span class="p">::</span><span class="n">builder</span><span class="p">()</span>
@@ -80,7 +84,7 @@
 </section>
 
 <section aria-labelledby="streams"><h2 id="streams">Read a streamed reply</h2>
-<p><code>call_streaming</code> sends a request and returns a <code>ResponseStream</code> that yields each frame of the reply until the protocol&rsquo;s terminator arrives. The envelope type decides what a terminator is, by overriding <code>Packet::is_stream_terminator</code>:</p>
+<p><code>call_streaming</code> sends a request and returns a <code>ResponseStream</code> that yields each frame of the reply until the protocol&rsquo;s terminator arrives. The envelope type decides what a terminator is, by overriding <code>Packet::is_stream_terminator</code>. The bundled <code>Envelope</code> has none, so a stream of them ends only when the connection does, with an <code>UnexpectedEof</code> error.</p>
 <figure class="wf-code" data-wf-sample="tests/streaming_client.rs" data-wf-anchor="envelope" data-wf-copy="code" data-wf-copy-label="streaming_client.rs · an envelope with a terminator">
   <figcaption class="wf-code__bar"><span class="wf-code__name">streaming_client.rs · an envelope with a terminator</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
   <div class="wf-code__scroll" tabindex="0" role="region" aria-label="streaming_client.rs · an envelope with a terminator, working example"><div class="wf-syntax"><pre><span></span><code><span class="sd">/// An envelope whose message ID 0 means &quot;end of stream&quot;.</span>
@@ -143,19 +147,19 @@
 </div>
 </figure>
 <p>The stream checks every frame&rsquo;s correlation ID and ends with <code>ClientError::StreamCorrelationMismatch</code> on the first that does not match. It borrows the client mutably, so no other request can go out until it is drained or dropped. <code>StreamingResponseExt::typed_with</code> maps frames to domain values and can skip control frames along the way.</p>
-<p>The server in this sample is a few lines of plain Tokio, because a 0.3.0 <code>WireframeServer</code> answers each routed request with one frame. See <a href="/wireframe-www/guides/streaming/#scope">what 0.3.0 wires up</a>.</p>
-</section>
+<p>The server in this sample is a few lines of plain Tokio, because a 0.4.0-alpha1 <code>WireframeServer</code> answers each routed request with one reply. See <a href="/wireframe-www/guides/streaming/#scope">what the server wires up</a>.</p>
+<aside class="wf-main-note" aria-label="On main since the candidate"><p><span class="wf-main-note__label">On main since the candidate</span> A <code>route_response</code> handler can return a streamed reply from <code>WireframeServer</code> itself. <a href="/wireframe-www/roadmap/#main">What main has changed</a></p></aside></section>
 
 <section aria-labelledby="hooks"><h2 id="hooks">Hooks and tracing</h2>
 <ul>
-  <li><strong>Lifecycle.</strong> <code>on_connection_setup</code> returns per-connection state after the connection, and any preamble, succeeds; <code>on_connection_teardown</code> receives it on <code>close()</code>; <code>on_error</code> sees every failed send, receive, or call.</li>
-  <li><strong>Per frame.</strong> <code>before_send</code> receives each serialized frame&rsquo;s bytes before they are written, and <code>after_receive</code> each raw frame before it is decoded. Several may be registered; they run in order. The sample counts frames with <code>before_send</code>.</li>
+  <li><strong>Lifecycle.</strong> <code>on_connection_setup</code> returns per-connection state after the connection, and any preamble, succeeds; <code>on_connection_teardown</code> receives it on <code>close()</code>; <code>on_error</code> sees failed sends, receives, and calls, but not failures from connecting or the preamble, because the client does not exist yet, nor errors yielded by a <code>ResponseStream</code>.</li>
+  <li><strong>Per frame.</strong> <code>before_send</code> receives each serialized frame&rsquo;s bytes before they are written, and <code>after_receive</code> each raw frame before it is decoded. Several may be registered; they run in order. The sample counts frames with <code>before_send</code>. Frames from <code>send_streaming</code>, which sends a large body as many frames, bypass it.</li>
   <li><strong>Tracing.</strong> The client emits <code>tracing</code> spans around every operation, at <code>INFO</code> for connect and close and <code>DEBUG</code> for data. <code>tracing_config</code> changes the levels and can time each operation.</li>
 </ul>
 </section>
 
-<section aria-labelledby="pools"><h2 id="pools">Pools of warm sockets</h2>
-<p>With the <code>pool</code> feature, <code>connect_pool</code> keeps a bounded set of connected sockets. A lease forwards the usual request methods to one of them; the pool recycles sockets that sit idle past <code>idle_timeout</code>, and reruns the preamble and setup hook for each new one.</p>
+<section aria-labelledby="pools"><h2 id="pools">Connection pools</h2>
+<p>With the <code>pool</code> feature, <code>connect_pool</code> keeps a bounded set of reusable sockets, each opened on first use. A lease forwards the usual request methods to one of them; the pool recycles sockets that sit idle past <code>idle_timeout</code>, and reruns the preamble and setup hook for each new one.</p>
 <figure class="wf-code" data-wf-sample="tests/client.rs" data-wf-anchor="pool" data-wf-copy="code" data-wf-copy-label="client.rs · a pool">
   <figcaption class="wf-code__bar"><span class="wf-code__name">client.rs · a pool</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
   <div class="wf-code__scroll" tabindex="0" role="region" aria-label="client.rs · a pool, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WireframeClient</span><span class="p">::</span><span class="n">builder</span><span class="p">()</span>
@@ -164,6 +168,7 @@
 <span class="w">        </span><span class="n">ClientPoolConfig</span><span class="p">::</span><span class="n">default</span><span class="p">()</span>
 <span class="w">            </span><span class="p">.</span><span class="n">pool_size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="w">            </span><span class="p">.</span><span class="n">max_in_flight_per_socket</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="n">max_waiters</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="w">            </span><span class="p">.</span><span class="n">idle_timeout</span><span class="p">(</span><span class="n">Duration</span><span class="p">::</span><span class="n">from_secs</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
 <span class="w">            </span><span class="p">.</span><span class="n">fairness_policy</span><span class="p">(</span><span class="n">PoolFairnessPolicy</span><span class="p">::</span><span class="n">RoundRobin</span><span class="p">),</span>
 <span class="w">    </span><span class="p">)</span>
@@ -178,21 +183,27 @@
 </div>
 </figure>
 <p><code>max_in_flight_per_socket</code> is an admission budget, not parallel writes: I/O on one socket is still one request at a time. For a long-running workflow that should take fair turns with others, <code>pool.handle()</code> returns a <code>PoolHandle</code> that queues under the pool&rsquo;s fairness policy instead of acquiring a lease each time.</p>
+<ul>
+  <li><strong>A dead server shows up late.</strong> <code>connect_pool</code> and <code>acquire</code> can succeed with the server down, and the first operation is what reports it. In the sample, against a port with nothing listening, that call took 30 seconds and failed with a checkout timeout rather than a refused connection.</li>
+  <li><strong>Waiting is bounded.</strong> At most <code>max_waiters</code> acquisitions may queue, 64 by default. Further attempts return <code>ClientError::PoolSaturated</code> at once. No socket is affected, so retrying later is fine.</li>
+  <li><strong>Closing is final.</strong> A closed pool returns <code>ClientError::PoolClosed</code>, and one whose scheduler died returns <code>ClientError::SchedulerFailed</code>. Neither means a socket is dirty, and neither is retried: discard the pool and build another.</li>
+  <li><strong>Interrupted work discards the socket.</strong> A cancelled operation, or a lease dropped before its reply was read, costs that socket, so a late response cannot reach the next caller. Finish <code>send</code> and <code>receive</code> on the same lease to keep it.</li>
+</ul>
 </section>
     <footer class="wf-article__foot">
-      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/wireframe-client-design.md">Upstream: docs/wireframe-client-design.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/client/struct.WireframeClient.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/docs/users-guide.md">Upstream: docs/users-guide.md at v0.4.0-alpha1</a> · <a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/client/struct.WireframeClient.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe/issues">Report a documentation issue</a></p>
     </footer>
   </article>
 </div>
 </main>
     <footer class="wf-footer">
       <div class="wf-shell wf-footer__grid">
-        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh, drawn in the Common Signal series.</p></div>
         <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
-        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/commons/">Keeping the commons</a></li><li><a href="/wireframe-www/scope/">How this site is drawn</a></li></ul></div>
         <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
       </div>
-      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.4.0-alpha1 ahead of its publication</span></div>
     </footer>
   </body>
 </html>

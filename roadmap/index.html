@@ -4,18 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Roadmap · wireframe</title>
-    <meta name="description" content="What wireframe 0.3.0 provides, what the unreleased 0.4.0 changes, and what the road to 1.0 holds.">
+    <meta name="description" content="What wireframe 0.4.0-alpha1 provides, what changed since 0.3.0, what ships ahead of the wiring, and what the road to 1.0 holds.">
     <meta property="og:title" content="Roadmap · wireframe">
-    <meta property="og:description" content="What wireframe 0.3.0 provides, what the unreleased 0.4.0 changes, and what the road to 1.0 holds.">
+    <meta property="og:description" content="What wireframe 0.4.0-alpha1 provides, what changed since 0.3.0, what ships ahead of the wiring, and what the road to 1.0 holds.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
-    <meta name="theme-color" content="#030e0c">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/vendor/plates/posters/27.webp">
+    <meta name="theme-color" content="#040911">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
     <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
     <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
     <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+    <script src="/wireframe-www/assets/js/plates.js" defer></script>
   </head>
   <body>
     <a class="wf-skip" href="#main-content">Skip to content</a>
@@ -23,67 +24,123 @@
       <div class="wf-shell wf-mast__inner">
         <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
         <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/" aria-current="page">Roadmap</a></li></ul></nav>
-        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
-        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/" aria-current="page">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/" aria-current="page">Roadmap</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
       </div>
     </header>
     <main id="main-content"><header class="wf-page-head">
   <div class="wf-shell wf-page-head__grid">
     <div class="wf-page-head__copy">
-      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li aria-current="page">Released, next, and further out</li></ol></nav>
-      <h1>Released, next, and further out</h1>
-      <p class="wf-deck">0.3.0 is the release. 0.4.0 is in progress on the default branch and breaks things on purpose. Beyond that, the upstream roadmap is a plan, not a promise.</p>
-      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
-    </div><figure class="wf-plate">
-  <img src="/wireframe-www/assets/images/construction.webp" srcset="/wireframe-www/assets/images/construction-half.webp 768w, /wireframe-www/assets/images/construction.webp 1536w" sizes="(width &lt; 1024px) 100vw, 560px" alt="A large mint wireframe structure in perspective: the left part is fully lit, with a faceted junction at its centre; in the middle an amber beam tip is tracing a new edge; to the right, further frames exist only as faint dashed construction lines with calibration ticks." width="1536" height="1024" decoding="async" loading="eager" fetchpriority="high"><figcaption><span class="wf-label">Still being drawn</span><span>Lit lines are shipped. Dashed lines are plans, not promises.</span></figcaption></figure>  </div>
+      <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li aria-current="page">This alpha, what changed, and what is next</li></ol></nav>
+      <h1>This alpha, what changed, and what is next</h1>
+      <p class="wf-deck">0.4.0-alpha1 is an alpha that is not yet published: expect interfaces to change before 1.0, and pin the version. Beyond it, the upstream roadmap is a plan, and the proposals are proposals.</p>
+      <p class="wf-version">wireframe 0.4.0-alpha1 · samples verified 2026-11-19</p>
+    </div><figure class="wf-plate wf-plate--head" data-wf-plate="06" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js" data-wf-plate-eager>
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/06.webp" alt="Seven hexagonal nodes, each labelled with an RFC number, are linked to a central node labelled PR 845." width="929" height="494" decoding="async" fetchpriority="high"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-06-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-06-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 06 · Concept artwork</span> <strong id="plate-06-title" class="wf-plate__title">Seven proposals.</strong> Seven requests for comments gathered around one shared core. <span class="wf-plate__source"><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/roadmap.md">Proposed · RFCs 0003 to 0009. None has a runtime at 7351347.</a></span></figcaption>
+</figure>  </div>
 </header>
 <div class="wf-shell wf-landing">
   <div class="wf-horizons">
     <section class="wf-horizon" aria-labelledby="now">
-      <p class="wf-label">Released 6 April 2026</p>
-      <h2 id="now">In 0.3.0</h2>
+      <p class="wf-label">Not yet published · targeted for 15 November 2026</p>
+      <h2 id="now">In 0.4.0-alpha1</h2>
       <ul>
         <li>Routing by message ID, the bundled <code>Envelope</code> and custom <code>Packet</code> types, and correlation IDs.</li>
-        <li>Pluggable framing through <code>FrameCodec</code>, with length-delimited framing by default; preambles.</li>
-        <li><code>Transform</code> middleware and connection setup and teardown hooks.</li>
+        <li>Pluggable framing through <code>FrameCodec</code>, with length-delimited framing by default; preambles with a deadline.</li>
+        <li><code>Transform</code> middleware, connection setup and teardown hooks, and the <code>before_send</code> protocol hook on routed replies.</li>
         <li>Transport fragmentation, protocol message assembly, and three-tier memory budgets.</li>
-        <li>Streaming responses, priority push queues, a fair connection actor, and a session registry, as building blocks.</li>
-        <li>A client with correlated calls, streamed replies, hooks, tracing, and pools.</li>
+        <li>A client with correlated calls, streamed replies, streaming sends, hooks, tracing, and pools.</li>
         <li>The <code>testkit</code> feature and the <code>wireframe_testing</code> crate.</li>
       </ul>
+      <p>One routed request produces one reply, split across frames only by fragmentation, and a handler cannot return a stream.</p>
     </section>
-    <section class="wf-horizon wf-horizon--next" aria-labelledby="next">
-      <p class="wf-label">Unreleased · on the default branch</p>
-      <h2 id="next">Coming in 0.4.0</h2>
-      <p>The upstream changelog and the 0.3.0 to 0.4.0 migration guide list these, among others. They are breaking changes, so code written against 0.3.0 will need updates.</p>
+    <section class="wf-horizon wf-horizon--next" aria-labelledby="changed">
+      <p class="wf-label">Since 0.3.0</p>
+      <h2 id="changed">What to act on</h2>
+      <p>The <a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/docs/v0-4-0-migration-guide.md">migration guide</a> lists every change. The ones most likely to surprise are those that still compile.</p>
       <ul>
-        <li><strong>A prepared application.</strong> <code>WireframeServer::new</code> will call its factory once per server run and share the prepared application across connections, rather than building one per connection. Per-connection state moves to <code>on_connection_setup</code>; <code>WireframeServer::from_app</code> takes an application that is already built.</li>
-        <li><strong>Non-exhaustive errors.</strong> <code>ServerError</code> and <code>ClientError</code> become <code>#[non_exhaustive]</code>, and a saturated pool returns <code>ClientError::PoolSaturated</code>.</li>
-        <li><strong>Bounded decoding.</strong> The bundled bincode decoders cap the container lengths a peer can declare, at 16&nbsp;MiB for messages and 1&nbsp;KiB for preambles.</li>
-        <li><strong>No linger.</strong> <code>SocketOptions::linger</code> and the builder&rsquo;s <code>linger</code> go; <code>close().await</code> is the graceful path.</li>
+        <li><strong>A prepared application.</strong> <code>WireframeServer::new</code> calls its factory once per server run and shares the prepared application across connections. Per-connection state moves to <code>on_connection_setup</code>; <code>WireframeServer::from_app</code> takes an application already built, and <code>spawn</code> returns a <code>ServerShutdown</code>.</li>
+        <li><strong>Preamble deadlines.</strong> The first read has a 10-second default deadline, with or without a preamble, and an error from the success handler now closes the connection.</li>
+        <li><strong>Bounded, exact decoding.</strong> The bundled bincode decoders cap peer-declared lengths at 16&nbsp;MiB for messages and 1&nbsp;KiB for preambles, and trailing bytes after an envelope are a decoding error.</li>
+        <li><strong>Binding totals and counted fragments.</strong> A declared <code>total_body_len</code> is a commitment, and fragment bytes count towards memory budgets.</li>
+        <li><strong>Hooks on replies.</strong> <code>before_send</code> now runs on every handler response, including each fragment.</li>
+        <li><strong>Pool limits.</strong> At most <code>max_waiters</code> acquisitions may queue, closed pools say so, and interrupted work discards its socket.</li>
+        <li><strong>Reassembly caps.</strong> <code>FragmentationConfig</code> gains <code>max_concurrent_partials</code> and <code>max_buffered_bytes</code>, and <code>Reassembler::new</code> takes both.</li>
+        <li><strong>Error enums.</strong> <code>ClientError</code> is now <code>#[non_exhaustive]</code>, and it, <code>ServerError</code>, <code>MessageAssemblyError</code>, and <code>ReassemblyError</code> gain variants.</li>
+        <li><strong>No linger.</strong> <code>SocketOptions::linger</code> and the builder&rsquo;s <code>linger</code> are gone; <code>close().await</code> is the graceful path.</li>
+        <li><strong>Deprecations.</strong> <code>WireframeApp::handle_connection</code> and <code>handle_connection_result</code> rebuild the middleware chains for every connection. Prepare the application once and use <code>PreparedApp</code>.</li>
+        <li><strong>Dependencies.</strong> <code>metrics-exporter-prometheus</code> and <code>tracing-subscriber</code> are no longer brought along at run time. Declare them if the application uses them.</li>
       </ul>
+    </section>
+    <section class="wf-horizon wf-horizon--next" aria-labelledby="boundary">
+      <p class="wf-label">Tested, not yet wired</p>
+      <h2 id="boundary">Ahead of the server</h2>
+      <p>These parts ship and are tested on their own, but <code>WireframeServer</code> does not drive them, so adopting one means writing the glue. <a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/docs/users-guide.md#building-blocks-not-yet-wired-into-the-server">The users&rsquo; guide</a> says how far each goes, and each has a tracking issue:</p>
+      <ul>        <li><a href="https://github.com/leynos/wireframe/issues/874">ConnectionActor, streaming and multi-packet responses (#874)</a>. Since the candidate, wired on main: the server runs an actor per connection, and route_response handlers can stream.</li>        <li><a href="https://github.com/leynos/wireframe/issues/875">Push queues and SessionRegistry (#875)</a></li>        <li><a href="https://github.com/leynos/wireframe/issues/876">Streaming request bodies (#876)</a></li>        <li><a href="https://github.com/leynos/wireframe/issues/877">Extractors and app_data (#877)</a>. Since the candidate, removed on main by ADR 0017.</li>        <li><a href="https://github.com/leynos/wireframe/issues/878">Recovery policies and the codec error metric (#878)</a></li>        <li><a href="https://github.com/leynos/wireframe/issues/879">on_eof and the other protocol hooks (#879)</a>. Since the candidate, partly wired on main: on_command_end, handle_error, and stream_end_frame now run; on_eof does not.</li>      </ul>
+    </section>
+    <section class="wf-horizon wf-horizon--main" aria-labelledby="main">
+      <p class="wf-label">On main at <code>7351347</code> · checked 18 November 2026 · not in a release</p>
+      <h2 id="main">Since the candidate</h2>
+      <p>The samples on this site run against the 0.4.0-alpha1 candidate at <code>cd634074</code>. The library&rsquo;s main branch has moved on since, and these changes will reach a release only when one is cut from it:</p>
+      <ul>
+        <li><strong>Streaming handlers.</strong> <code>WireframeApp::route_response</code> takes a <code>ResponseHandler</code> that returns a <code>Response</code>, and every server connection now runs a <code>ConnectionActor</code>, so streamed and multi-packet replies reach the wire. <code>on_command_end</code>, <code>handle_error</code>, and <code>stream_end_frame</code> now run.</li>
+        <li><strong>Extractors and <code>app_data</code> removed.</strong> <a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/adrs/adr-0017-remove-route-extractors-and-app-data.md">ADR 0017</a> removes the unwired extractor and application-data APIs; shared state travels in the handler&rsquo;s closure, as an <code>Arc</code>.</li>
+        <li><strong>Shutdown reaches idle connections.</strong> <code>stop()</code> now ends a connection at its read boundary, so an idle peer no longer holds up <code>drained</code>.</li>
+        <li><strong>A connection-local runtime.</strong> Teardown runs exactly once, including on panic and cancellation, and the active-connection gauge counts accepted sockets.</li>
+      </ul>
+    </section>
+    <section class="wf-horizon wf-horizon--proposed" aria-labelledby="proposed">
+      <p class="wf-label">Proposed · none implemented at <code>7351347</code></p>
+      <h2 id="proposed">Seven proposals</h2>
+      <p>Seven requests for comments describe where the runtime could go next. Their documents have merged; their runtime has not, and the roadmap calls them &ldquo;proposed work, not shipped guarantees&rdquo;. Each link is the proposal at the checked revision.</p>
+      <ul>        <li><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0003-native-message-adapter-boundary.md">RFC 0003, Native message adapter boundary</a>. Keep the protocol’s identity: a typed boundary between native frames, application operations, and native replies, in place of mandatory envelope mapping.</li>        <li><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0004-duplex-session-driver.md">RFC 0004, Duplex session driver</a>. Give each direction room to move: a full-duplex lifecycle for reads, dispatch, unsolicited output, streams, and bounded termination.</li>        <li><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0005-negotiated-transport-entry-points.md">RFC 0005, Negotiated transport entry points</a>. Establish and transition connections, including negotiated upgrades and supplied streams, while keeping buffered bytes and transport ownership intact.</li>        <li><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0006-configurable-framing-primitives.md">RFC 0006, Configurable framing primitives</a>. Small, bounded framing primitives for native codecs, such as fixed-width lengths, short headers, and delimiters, without protocol state machines in core.</li>        <li><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0007-budgets-scheduling-and-assembly.md">RFC 0007, Budgets, scheduling, and assembly</a>. Capacity is part of the design: bound native frames, retained data, assembly, admitted work, and queued output across connections and streams.</li>        <li><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0008-external-adapter-conformance-harness.md">RFC 0008, External adapter conformance harness</a>. Show the working: test generic APIs and bounded protocol toys through public connectors and independent byte oracles. It is explicitly not certification.</li>        <li><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0009-datagram-session-transport.md">RFC 0009, Datagram session transport</a>. Expose packet boundaries and peer metadata to datagram adapters. Datagram boundaries and duplex progress are separate questions.</li>      </ul>
+      <div class="wf-proposal-plates">
+        <figure class="wf-plate" data-wf-plate="33" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js">
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/33.webp" alt="A peer sends to a reader inside one session, which passes to bounded work, then to bounded queues, then to a sole writer that sends back to the peer. Cancellation and deadlines sit beside them. Beneath: reads advance while writes wait." width="929" height="494" decoding="async" loading="lazy"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-33-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-33-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 33 · Technical diagram</span> <strong id="plate-33-title" class="wf-plate__title">Duplex session driver.</strong> One session owns its reader, its only writer, and bounded work, so reading carries on while a write or a handler waits. <span class="wf-plate__source"><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0004-duplex-session-driver.md">Proposed · RFC 0004. None of it has a runtime at 7351347.</a></span></figcaption>
+</figure>
+        <figure class="wf-plate" data-wf-plate="10" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js">
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/10.webp" alt="Phase transition. A red flush barrier divides an old phase from a new one across three lanes: encoded frames are flushed first; accepted work that was not encoded is cancelled and may be retried; unread bytes are handed over once." width="929" height="494" decoding="async" loading="lazy"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-10-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-10-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 10 · Technical diagram</span> <strong id="plate-10-title" class="wf-plate__title">Flush barrier.</strong> Before a protocol changes phase, everything already encoded is written out, anything accepted but not yet encoded is cancelled, and unread bytes pass to the new phase exactly once. <span class="wf-plate__source"><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0005-negotiated-transport-entry-points.md">Proposed · RFC 0005. None of it has a runtime at 7351347.</a></span></figcaption>
+</figure>
+        <figure class="wf-plate" data-wf-plate="11" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js">
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/11.webp" alt="A box labelled TCP stream holds one continuous line. Below, a box of datagram events holds datagram 1, marked one unit, once; datagram 2; a second datagram 2, marked duplicate: own event; and a shorter datagram 3, marked truncated: marked." width="929" height="494" decoding="async" loading="lazy"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-11-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-11-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 11 · Technical diagram</span> <strong id="plate-11-title" class="wf-plate__title">Streams and datagrams.</strong> A stream hides loss, duplication, and truncation. A datagram transport would report each packet once, as one unit, duplicates and truncation included. <span class="wf-plate__source"><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0009-datagram-session-transport.md">Proposed · RFC 0009. wireframe serves TCP streams today.</a></span></figcaption>
+</figure>
+        <figure class="wf-plate" data-wf-plate="21" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js">
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/21.webp" alt="A scripted raw peer, with short reads, byte-boundary faults, and controlled time, connects through a golden-bytes check to a toy adapter handling setup, frames, and cancellation. Beneath: a verified toy, not certification." width="929" height="494" decoding="async" loading="lazy"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-21-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-21-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 21 · Technical diagram</span> <strong id="plate-21-title" class="wf-plate__title">Conformance harness.</strong> Scripted peers drive a toy adapter, byte by byte, against golden bytes with their own provenance. <span class="wf-plate__source"><a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/rfcs/rfc-0008-external-adapter-conformance-harness.md">Proposed · RFC 0008. A verified toy for each protocol, explicitly not a certification.</a></span></figcaption>
+</figure>
+      </div>
+      <p>The first consumers proposed for these contracts are mxd serving Hotline, Modbus TCP, and a toy for the Agent Client Protocol. The toy is a prospective consumer test of bounded framing and duplex progress; it is not shipped, and the protocol&rsquo;s own semantics stay outside wireframe.</p>
     </section>
     <section class="wf-horizon wf-horizon--later" aria-labelledby="later">
       <p class="wf-label">Planned · upstream roadmap</p>
       <h2 id="later">Toward 1.0</h2>
       <ul>
-        <li>Zero-copy payloads through the public byte APIs, replacing <code>Vec&lt;u8&gt;</code> where a frame can be shared.</li>
+        <li>Zero-copy payloads through the public byte APIs. This is not in the alpha: <code>Serializer::serialize</code> still returns <code>Vec&lt;u8&gt;</code>.</li>
+        <li>Alternative transports beyond raw TCP, a formal message versioning system, and built-in middleware or guides for TLS.</li>
         <li>Formal verification of message assembly and dispatch: bounded model checks with Kani, model checks with Stateright, and proofs with Verus.</li>
-        <li>Further client ergonomics, middleware, and streaming helpers.</li>
       </ul>
-      <p>Track the detail in the <a href="https://github.com/leynos/wireframe-www/blob/main/docs/roadmap.md">upstream roadmap</a> and the <a href="https://github.com/leynos/wireframe-www/blob/main/CHANGELOG.md">changelog</a>.</p>
+      <p>Track the detail in the <a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/roadmap.md">upstream roadmap</a> and the <a href="https://github.com/leynos/wireframe/blob/main/CHANGELOG.md">changelog</a>.</p>
     </section>
   </div>
 </div>
 </main>
     <footer class="wf-footer">
       <div class="wf-shell wf-footer__grid">
-        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh, drawn in the Common Signal series.</p></div>
         <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
-        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/commons/">Keeping the commons</a></li><li><a href="/wireframe-www/scope/">How this site is drawn</a></li></ul></div>
         <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
       </div>
-      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.4.0-alpha1 ahead of its publication</span></div>
     </footer>
   </body>
 </html>

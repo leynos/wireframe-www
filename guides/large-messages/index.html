@@ -8,14 +8,15 @@
     <meta property="og:title" content="Fragmentation and memory budgets · wireframe">
     <meta property="og:description" content="Large messages cross the wire in pieces and are rejoined before a handler sees them, inside budgets the connection cannot exceed.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
-    <meta name="theme-color" content="#030e0c">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/vendor/plates/posters/27.webp">
+    <meta name="theme-color" content="#040911">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
     <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
     <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
     <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+    <script src="/wireframe-www/assets/js/plates.js" defer></script>
   </head>
   <body>
     <a class="wf-skip" href="#main-content">Skip to content</a>
@@ -23,8 +24,8 @@
       <div class="wf-shell wf-mast__inner">
         <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
         <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
-        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
-        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
       </div>
     </header>
     <main id="main-content"><header class="wf-page-head">
@@ -33,9 +34,12 @@
       <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">Fragmentation and memory budgets</li></ol></nav>
       <h1>Fragmentation and memory budgets</h1>
       <p class="wf-deck">Large messages cross the wire in pieces and are rejoined before a handler sees them, inside budgets the connection cannot exceed.</p>
-      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
-    </div><figure class="wf-plate">
-  <img src="/wireframe-www/assets/images/fragments.webp" srcset="/wireframe-www/assets/images/fragments-half.webp 768w, /wireframe-www/assets/images/fragments.webp 1536w" sizes="(width &lt; 1024px) 100vw, 560px" alt="A long cyan wireframe slab, divided into four sections, separates into four short boxes that travel along a faint amber arc with blank gaps between them, and arrive inside a mint frame on the right, where they sit joined again as one long slab with glowing joints." width="1536" height="1024" decoding="async" loading="eager" fetchpriority="high"><figcaption><span class="wf-label">Fragments</span><span>Too long for one frame, so it crosses in pieces and is rejoined before any handler sees it.</span></figcaption></figure>  </div>
+      <p class="wf-version">wireframe 0.4.0-alpha1 · samples verified 2026-11-19</p>
+    </div><figure class="wf-plate wf-plate--head" data-wf-plate="16" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js" data-wf-plate-eager>
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/16.webp" alt="" width="929" height="494" decoding="async" fetchpriority="high"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-16-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-16-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 16 · Concept artwork</span> <strong id="plate-16-title" class="wf-plate__title">The bounded passage.</strong> A cube travels an octagonal passage; as it leaves, the beam draws the next at the entrance. <span class="wf-plate__source">Concept artwork. The passage stands for the frame limit, not a measured size.</span></figcaption>
+</figure>  </div>
 </header>
 <div class="wf-shell wf-article-grid">
   <aside class="wf-aside">
@@ -46,7 +50,7 @@
   </aside>
   <article class="wf-article">
 <section aria-labelledby="enable"><h2 id="enable">Turn fragmentation on</h2>
-<p>A frame has a size limit, 1,024 bytes by default, and some messages are larger. Fragmentation splits an oversized payload into fragments that each fit a frame, then rejoins them on the far side before anything is decoded. It is off by default. <code>enable_fragmentation()</code> derives a configuration from the frame limit: messages up to sixteen frames&rsquo; worth (16&nbsp;KiB by default), and partial messages evicted after 30 seconds.</p>
+<p>A frame has a size limit, 1,024 bytes by default, and some messages are larger. Fragmentation splits an oversized payload into fragments that each fit a frame, then rejoins them on the far side before routing, so handlers only ever see whole messages. It is off by default. <code>enable_fragmentation()</code> derives a configuration from the frame limit: messages up to sixteen frames&rsquo; worth (16&nbsp;KiB by default), partial messages evicted after 30 seconds, and caps on how much a peer can leave unfinished. Both ends must speak this format, and <code>WireframeClient</code> does not: a client talking to a fragmenting server sees <code>FRAG</code> payloads.</p>
 <figure class="wf-code" data-wf-sample="tests/large_messages.rs" data-wf-anchor="budgets" data-wf-copy="code" data-wf-copy-label="large_messages.rs · explicit budgets">
   <figcaption class="wf-code__bar"><span class="wf-code__name">large_messages.rs · explicit budgets</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
   <div class="wf-code__scroll" tabindex="0" role="region" aria-label="large_messages.rs · explicit budgets, working example"><div class="wf-syntax"><pre><span></span><code><span class="k">fn</span><span class="w"> </span><span class="nf">budgets</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">MemoryBudgets</span><span class="w"> </span><span class="p">{</span>
@@ -68,8 +72,28 @@
 </code></pre></div>
 </div>
 </figure>
-<p>The layering is fixed. Outbound, a reply is serialized, then fragmented, then wrapped by the codec. Inbound, frames are decoded, then reassembled, then deserialized, so handlers always receive whole envelopes. Each fragment carries a <code>FragmentHeader</code> (message ID, index, and a last-fragment flag) behind a <code>FRAG</code> marker.</p>
+<p>The layering is fixed. Outbound, a reply is fragmented, then each fragment is serialized, wrapped by the codec, passed to <code>before_send</code>, and encoded, so each fragment is its own frame. Inbound, each frame is decoded and deserialized as an envelope, then fragments are reassembled and protocol messages assembled, and only then is the result routed. Each fragment carries a <code>FragmentHeader</code> (message ID, index, and a last-fragment flag) behind a <code>FRAG</code> marker.</p>
 <p><code>fragmentation(Some(config))</code> sets limits explicitly; <code>FragmentationConfig::for_frame_budget</code> builds one from a frame size, a maximum message size, and a reassembly timeout. Remember that changing the codec or <code>buffer_capacity</code> clears it.</p>
+<figure class="wf-code" data-wf-sample="tests/large_messages.rs" data-wf-anchor="caps" data-wf-copy="code" data-wf-copy-label="large_messages.rs · what the frame budget derives">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">large_messages.rs · what the frame budget derives</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="large_messages.rs · what the frame budget derives, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">16</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;non-zero&quot;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentationConfig</span><span class="p">::</span><span class="n">for_frame_budget</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="n">limit</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">::</span><span class="n">from_secs</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;the budget covers the fragment header&quot;</span><span class="p">);</span>
+
+<span class="c1">// At most min(frame budget, 64) partial messages at once...</span>
+<span class="fm">assert_eq!</span><span class="p">(</span>
+<span class="w">    </span><span class="n">config</span><span class="p">.</span><span class="n">max_concurrent_partials</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">get</span><span class="p">),</span>
+<span class="w">    </span><span class="nb">Some</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="c1">// ...holding at most the larger of 64 frames and one whole message.</span>
+<span class="fm">assert_eq!</span><span class="p">(</span>
+<span class="w">    </span><span class="n">config</span><span class="p">.</span><span class="n">max_buffered_bytes</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">get</span><span class="p">),</span>
+<span class="w">    </span><span class="nb">Some</span><span class="p">(</span><span class="mi">64</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+</div>
+</figure>
+<p>A message over <code>max_message_size</code> counts as a deserialization failure. Exceeding <code>max_concurrent_partials</code> or <code>max_buffered_bytes</code> closes the connection immediately.</p>
 </section>
 
 <section aria-labelledby="fragmenter"><h2 id="fragmenter">Split and rejoin by hand</h2>
@@ -86,11 +110,11 @@
 </code></pre></div>
 </div>
 </figure>
-<p><code>Reassembler</code> is its mirror. It buffers fragments per message ID, rejects fragments out of order, enforces the maximum assembled size, and offers <code>purge_expired</code> for partial messages that never finish. The final fragment returns the whole message.</p>
+<p><code>Reassembler</code> is its mirror. It buffers fragments per message ID, rejects fragments out of order, enforces the maximum assembled size, and offers <code>purge_expired</code> for partial messages that never finish. It takes the two aggregate caps after its other arguments; <code>None</code> leaves one unbounded, as in the sample. The final fragment returns the whole message.</p>
 <figure class="wf-code" data-wf-sample="tests/large_messages.rs" data-wf-anchor="reassembler" data-wf-copy="code" data-wf-copy-label="large_messages.rs · reassembling">
   <figcaption class="wf-code__bar"><span class="wf-code__name">large_messages.rs · reassembling</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
   <div class="wf-code__scroll" tabindex="0" role="region" aria-label="large_messages.rs · reassembling, working example"><div class="wf-syntax"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NonZeroUsize</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">4096</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;non-zero&quot;</span><span class="p">);</span>
-<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">reassembler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Reassembler</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">cap</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">::</span><span class="n">from_secs</span><span class="p">(</span><span class="mi">30</span><span class="p">));</span>
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">reassembler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Reassembler</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">cap</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">::</span><span class="n">from_secs</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span>
 <span class="kd">let</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MessageId</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
 <span class="kd">let</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentHeader</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">FragmentIndex</span><span class="p">::</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
@@ -115,33 +139,49 @@
 <section aria-labelledby="assembly"><h2 id="assembly">Message assembly is different</h2>
 <p>Fragmentation is wireframe&rsquo;s own transport mechanism, invisible to the protocol. Some protocols define their own multi-frame messages instead, with a first frame and continuations in their own header format. For those, a <code>MessageAssembler</code>, installed with <code>with_message_assembler</code>, parses each frame&rsquo;s header into a first frame or a continuation, keyed by a <code>MessageKey</code>.</p>
 <p>Assembly runs after fragment reassembly and before dispatch. It can hold several messages open at once, interleaved on one connection, and, where the protocol numbers its continuations, it rejects gaps, duplicates, and frames after the last. A message that completes is routed as usual.</p>
+<p>A declared <code>total_body_len</code> is a commitment. A body that does not match it is rejected, counted as a deserialization failure, and never reaches a handler, and <code>None</code> opts out. An exact total is also the cheapest way to refuse an oversized message early.</p>
 </section>
 
 <section aria-labelledby="budgets"><h2 id="budgets">Memory budgets</h2>
+<div class="wf-interlude"><figure class="wf-plate wf-plate--interlude" data-wf-plate="13" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js" data-wf-drive="approach">
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/13.webp" alt="" width="929" height="494" decoding="async" loading="lazy"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-13-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-13-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 13 · Concept artwork</span> <strong id="plate-13-title" class="wf-plate__title">Guarded core.</strong> A magenta core sits inside a protective blue mesh. <span class="wf-plate__source">Concept artwork. It stands for a bounded reserve, not for any measured amount.</span></figcaption>
+</figure></div>
 <p>Partial messages cost memory, and a peer can send first frames forever. <code>MemoryBudgets</code> caps three things per connection: the bytes buffered for one message, for the whole connection, and across messages in flight. Without explicit budgets, wireframe derives them from the frame limit: 16, 64, and 64 times it, which is 16, 64, and 64&nbsp;KiB by default.</p>
+<figure class="wf-plate" data-wf-plate="15" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js">
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/15.webp" alt="Three gauges: per message, 16 KiB; per connection, 64 KiB; in flight, 64 KiB. The per-message gauge ends in a red mark, labelled over: message rejected. The other two turn yellow at 80%, labelled reads pause, and end in red, labelled over: close." width="929" height="494" decoding="async" loading="lazy"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-15-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-15-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 15 · Technical diagram</span> <strong id="plate-15-title" class="wf-plate__title">Memory budgets.</strong> Three caps on what one connection may buffer. Past the per-message cap a message is rejected; at 80% of the smaller aggregate cap reads pause; past it, the connection closes. <span class="wf-plate__source">In 0.4.0-alpha1. Defaults for the 1,024-byte frame limit; the needles are illustrative.</span></figcaption>
+</figure>
 <div class="wf-table-scroll" tabindex="0" role="region" aria-label="Memory budget protection tiers"><table>
 <thead><tr><th scope="col">Tier</th><th scope="col">When</th><th scope="col">What happens</th></tr></thead>
 <tbody>
-<tr><td>Per frame</td><td>A frame would push buffered bytes past a cap</td><td>The frame is rejected, that partial message is freed, and the failure counts as a deserialization failure</td></tr>
+<tr><td>Per frame, with a <code>MessageAssembler</code> only</td><td>A frame would push buffered bytes past a cap</td><td>The frame is rejected, that partial message is freed, and the failure counts as a deserialization failure</td></tr>
 <tr><td>Soft limit</td><td>Buffered bytes reach 80% of the smaller aggregate cap</td><td>The connection pauses briefly before reading the next frame, pushing back on the sender</td></tr>
 <tr><td>Hard cap</td><td>Buffered bytes exceed the smaller aggregate cap</td><td>The connection closes</td></tr>
 </tbody></table></div>
-<p>The effective per-message limit is the smaller of the fragmentation maximum and the per-message budget. A message that arrives in a single frame is never counted against the aggregate caps, because nothing is buffered.</p>
+<figure class="wf-plate" data-wf-plate="17" data-wf-plate-runtime="/wireframe-www/assets/vendor/plates/wireframe-plate.js">
+  <div class="wf-plate__stage" data-wf-plate-stage><img class="wf-plate__poster" data-wf-plate-poster src="/wireframe-www/assets/vendor/plates/posters/17.webp" alt="A segmented gauge of buffered bytes, labelled fragment and assembly bytes, counted together, fills green to a yellow soft limit at 80% and ends at a red hard cap. Below it: below 80%, read on; at 80%, pause 5 ms per read; over the cap, close." width="929" height="494" decoding="async" loading="lazy"></div>
+  <div class="wf-plate__controls" data-wf-plate-controls hidden><button type="button" class="wf-plate__button" data-wf-plate-play aria-describedby="plate-17-title">Play illustration</button><button type="button" class="wf-plate__button" data-wf-plate-still aria-describedby="plate-17-title" hidden>Show still</button><span class="wf-plate__status" data-wf-plate-status></span></div>
+  <figcaption class="wf-plate__caption"><span class="wf-plate__number">Plate 17 · Technical diagram</span> <strong id="plate-17-title" class="wf-plate__title">Buffer pressure.</strong> Fragment and assembly bytes share one gauge. Below the soft limit, reading carries on; at it, each read waits 5 ms; over the hard cap, the connection closes. <span class="wf-plate__source">In 0.4.0-alpha1. The fill level is illustrative.</span></figcaption>
+</figure>
+<p>The soft limit and the hard cap count fragment and assembly bytes together, so a workload that fragments heavily can pace or close even with message assembly off. A default application buffers neither, and these tiers have nothing to do. The effective per-message limit is the smaller of the fragmentation maximum and the per-message budget. A message that completes in a single frame is never counted, because nothing is buffered.</p>
 </section>
     <footer class="wf-article__foot">
-      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/generic-message-fragmentation-and-re-assembly-design.md">Upstream: docs/generic-message-fragmentation-and-re-assembly-design.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/fragment/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/docs/users-guide.md">Upstream: docs/users-guide.md at v0.4.0-alpha1</a> · <a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/fragment/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe/issues">Report a documentation issue</a></p>
     </footer>
   </article>
 </div>
 </main>
     <footer class="wf-footer">
       <div class="wf-shell wf-footer__grid">
-        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh, drawn in the Common Signal series.</p></div>
         <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
-        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/commons/">Keeping the commons</a></li><li><a href="/wireframe-www/scope/">How this site is drawn</a></li></ul></div>
         <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
       </div>
-      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.4.0-alpha1 ahead of its publication</span></div>
     </footer>
   </body>
 </html>

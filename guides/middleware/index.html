@@ -8,14 +8,15 @@
     <meta property="og:title" content="Middleware and lifecycle hooks · wireframe">
     <meta property="og:description" content="Handlers observe; middleware answers. Hooks give each connection its own state.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/images/scope.webp">
-    <meta name="theme-color" content="#030e0c">
+    <meta property="og:image" content="https://leynos.github.io/wireframe-www/assets/vendor/plates/posters/27.webp">
+    <meta name="theme-color" content="#040911">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/wireframe-www/assets/logos/favicon-48.png" sizes="48x48" type="image/png">
     <link rel="apple-touch-icon" href="/wireframe-www/assets/logos/apple-touch-icon.png">
     <link rel="preload" href="/wireframe-www/assets/fonts/sintony-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/wireframe-www/assets/styles/wireframe.css">
     <script src="/wireframe-www/assets/js/copy-code.js" defer></script>
+    <script src="/wireframe-www/assets/js/plates.js" defer></script>
   </head>
   <body>
     <a class="wf-skip" href="#main-content">Skip to content</a>
@@ -23,8 +24,8 @@
       <div class="wf-shell wf-mast__inner">
         <a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a>
         <nav class="wf-nav" aria-label="Primary"><ul><li class="wf-nav__up"><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li></ul></nav>
-        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
-        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
+        <div class="wf-mast__actions"><a class="wf-mast__link wf-mast__link--wide" href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#external"></use></svg></a><a class="wf-mast__link" href="https://github.com/leynos/wireframe">GitHub <svg class="wf-icon" aria-hidden="true" focusable="false" width="24" height="24"><use href="/wireframe-www/assets/icons/sprite.svg#branch"></use></svg></a></div>
+        <details class="wf-mobile"><summary>Menu</summary><nav aria-label="Mobile primary"><ul><li><a href="https://df12.studio/"><span aria-hidden="true">←&nbsp;</span>df12</a></li><li><a href="/wireframe-www/">Overview</a></li><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/" aria-current="page">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li></ul></nav></details>
       </div>
     </header>
     <main id="main-content"><header class="wf-page-head">
@@ -33,7 +34,7 @@
       <nav class="wf-crumbs" aria-label="Breadcrumb"><ol><li><a href="/wireframe-www/">wireframe</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li aria-current="page">Middleware and lifecycle hooks</li></ol></nav>
       <h1>Middleware and lifecycle hooks</h1>
       <p class="wf-deck">Handlers observe; middleware answers. Hooks give each connection its own state.</p>
-      <p class="wf-version">wireframe 0.3.0 · samples verified 2026-10-31</p>
+      <p class="wf-version">wireframe 0.4.0-alpha1 · samples verified 2026-11-19</p>
     </div>  </div>
 </header>
 <div class="wf-shell wf-article-grid">
@@ -91,24 +92,25 @@
 </code></pre></div>
 </div>
 </figure>
-<p>Both traits are <code>async_trait</code> traits in 0.3.0, so implementations need the <code>async-trait</code> crate.</p>
+<p>Both traits are <code>async_trait</code> traits in 0.4.0-alpha1, so implementations need the <code>async-trait</code> crate.</p>
 </section>
 
 <section aria-labelledby="order"><h2 id="order">Order and scope</h2>
 <ul>
-  <li><strong>Per route.</strong> The application wraps each route&rsquo;s handler in the full middleware stack when it builds its routes. The router chooses the route first, so a message with an unknown ID never reaches middleware.</li>
+  <li><strong>Per route, once.</strong> The application wraps each route&rsquo;s handler in the full middleware stack when it is prepared, and every connection shares the result. The router chooses the route first, so a message with an unknown ID never reaches middleware.</li>
   <li><strong>First registered, outermost.</strong> The first <code>wrap</code> sees the request first and the reply last. In the sample application, the version upgrade runs before the counter.</li>
   <li><strong>Infallible.</strong> The routed path expects <code>Error = Infallible</code>: a layer that cannot proceed writes an error reply rather than returning an error.</li>
 </ul>
+<p>Code that accepts streams itself, rather than using <code>WireframeServer</code>, calls <code>prepare()</code> once and reuses the <code>PreparedApp</code>. The older <code>WireframeApp::handle_connection</code> methods are deprecated because they rebuild the middleware chains for every connection.</p>
 </section>
 
 <section aria-labelledby="reply"><h2 id="reply">Write the reply</h2>
 <p>A routed handler returns nothing, and the default <code>HandlerService</code> answers with the request&rsquo;s payload. Replies are therefore written by middleware: call the inner service, then replace the bytes through <code>ServiceResponse::frame_mut()</code>. <a href="/wireframe-www/getting-started/#answer">Getting started</a> builds a full <code>Ping</code> to <code>Pong</code> layer this way. The reply keeps the request&rsquo;s message ID; see <a href="/wireframe-www/guides/routing/#correlation">correlation IDs</a> for what happens to its correlation ID.</p>
-<p>A handler that needs to influence the reply has to share state with the middleware, for example through a channel or a value the middleware can read. The upstream README describes extractor-style handlers that return their reply; they are not in 0.3.0.</p>
-</section>
+<p>A handler that needs to influence the reply has to share state with the middleware, for example through a channel or a value the middleware can read. Extractors exist in <code>wireframe::extractor</code> as building blocks, but handlers cannot declare them as parameters and the runtime never builds the request they read; <a href="https://github.com/leynos/wireframe/issues/877">#877</a> tracks that.</p>
+<aside class="wf-main-note" aria-label="On main since the candidate"><p><span class="wf-main-note__label">On main since the candidate</span> <a href="https://github.com/leynos/wireframe/blob/7351347e1965260a4f6b5292a44e8ca1af9d8364/docs/adrs/adr-0017-remove-route-extractors-and-app-data.md">ADR 0017</a> removes the extractor building blocks and <code>app_data</code>. A handler can also return its reply directly, through <code>route_response</code>. <a href="/wireframe-www/roadmap/#main">What main has changed</a></p></aside></section>
 
 <section aria-labelledby="from-fn"><h2 id="from-fn">What from_fn is for</h2>
-<p><code>middleware::from_fn</code> turns an async function into a <code>Transform</code>, and the upstream user&rsquo;s guide passes one to <code>wrap</code>. In 0.3.0 that does not compile: <code>from_fn</code>&rsquo;s output is an <code>FnService</code>, not a <code>HandlerService</code>, so it fails <code>wrap</code>&rsquo;s bound. It can still wrap a service directly, inside a handwritten <code>Transform</code> that hands the result to <code>HandlerService::from_service</code>, but for routed middleware a handwritten <code>Transform</code> is the shorter path.</p>
+<p><code>middleware::from_fn</code> turns an async function into a <code>Transform</code>, but it cannot be passed to <code>wrap</code>: <code>from_fn</code>&rsquo;s output is an <code>FnService</code>, not a <code>HandlerService</code>, so it fails <code>wrap</code>&rsquo;s bound. It can still wrap a service directly, inside a handwritten <code>Transform</code> that hands the result to <code>HandlerService::from_service</code>, but for routed middleware a handwritten <code>Transform</code> is the shorter path.</p>
 </section>
 
 <section aria-labelledby="versions"><h2 id="versions">Accept two versions</h2>
@@ -153,23 +155,43 @@
 </code></pre></div>
 </div>
 </figure>
-<p>Both hooks are async. Setup runs before any frame is read, after a preamble if the server expects one. The handlers and middleware in 0.3.0 have no access to this state; it is for per-connection bookkeeping such as metrics, registration, and cleanup.</p>
-<p>The <code>WireframeProtocol</code> trait, installed with <code>with_protocol</code>, defines further hooks around outbound frames and stream ends. Its hooks are run by the connection actor, which the routed server path does not use yet; see <a href="/wireframe-www/guides/streaming/#actor">the connection actor</a>.</p>
+<p>Both hooks are async. Setup runs before any frame is read, after a preamble if the server expects one. Handlers and middleware have no access to this state; it is for per-connection bookkeeping such as metrics, registration, and cleanup. To share state with a handler, capture it when building the closure, as the counting layer above does with its counter. <code>app_data</code> stores values for the extractor building blocks, and the connection runtime never reads them.</p>
+<aside class="wf-main-note" aria-label="On main since the candidate"><p><span class="wf-main-note__label">On main since the candidate</span> <code>app_data</code> is removed by ADR 0017, so closure capture is the only way to share state with a handler. <a href="/wireframe-www/roadmap/#main">What main has changed</a></p></aside><p>The <code>WireframeProtocol</code> trait, installed with <code>with_protocol</code>, defines further hooks. On a server connection only <code>before_send</code> runs: on each response frame, including each fragment, after the codec has wrapped it and just before it is encoded.</p>
+<figure class="wf-code" data-wf-sample="tests/middleware.rs" data-wf-anchor="before-send" data-wf-copy="code" data-wf-copy-label="middleware.rs · a protocol hook">
+  <figcaption class="wf-code__bar"><span class="wf-code__name">middleware.rs · a protocol hook</span><span class="wf-code__kind">Working example</span><span class="wf-code__slot" data-wf-copy-slot></span></figcaption>
+  <div class="wf-code__scroll" tabindex="0" role="region" aria-label="middleware.rs · a protocol hook, working example"><div class="wf-syntax"><pre><span></span><code><span class="sd">/// Runs on every response frame a server connection sends, after the codec</span>
+<span class="sd">/// has wrapped it and just before it is encoded.</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Stamped</span><span class="p">;</span>
+
+<span class="k">impl</span><span class="w"> </span><span class="n">WireframeProtocol</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Stamped</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Bytes</span><span class="p">;</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">ProtocolError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">before_send</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">frame</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">Bytes</span><span class="p">,</span><span class="w"> </span><span class="n">_context</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">ConnectionContext</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">stamped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BytesMut</span><span class="p">::</span><span class="n">from</span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="n">as_ref</span><span class="p">());</span>
+<span class="w">        </span><span class="n">stamped</span><span class="p">.</span><span class="n">extend_from_slice</span><span class="p">(</span><span class="s">b&quot;!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="o">*</span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stamped</span><span class="p">.</span><span class="n">freeze</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</figure>
+<p>What it writes must still fit the codec&rsquo;s <code>max_frame_length</code>. The default codec rejects an oversized frame, which fails the send and ends the connection, while a custom encoder must enforce the limit itself. The other hooks belong to <a href="/wireframe-www/guides/streaming/#actor">the connection actor</a>, which <code>WireframeServer</code> does not run.</p>
 </section>
     <footer class="wf-article__foot">
-      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/docs/users-guide.md">Upstream: docs/users-guide.md at v0.3.0</a> · <a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/middleware/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe-www/issues">Report a documentation issue</a></p>
+      <p><span class="wf-label">Sources</span> <a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/docs/users-guide.md">Upstream: docs/users-guide.md at v0.4.0-alpha1</a> · <a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/middleware/index.html">API reference on docs.rs</a> · <a href="https://github.com/leynos/wireframe/issues">Report a documentation issue</a></p>
     </footer>
   </article>
 </div>
 </main>
     <footer class="wf-footer">
       <div class="wf-shell wf-footer__grid">
-        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh.</p></div>
+        <div><a class="wf-brand" href="/wireframe-www/"><img src="/wireframe-www/assets/logos/lockup-480.webp" srcset="/wireframe-www/assets/logos/lockup-480.webp 480w, /wireframe-www/assets/logos/lockup-800.webp 800w" sizes="13rem" alt="wireframe home" width="480" height="105"></a><p class="wf-footer__lede">Binary protocols. Clear routes. A Rust library from df12 Productions, Edinburgh, drawn in the Common Signal series.</p></div>
         <div><h2>Read</h2><ul><li><a href="/wireframe-www/getting-started/">Get started</a></li><li><a href="/wireframe-www/guides/">Guides</a></li><li><a href="/wireframe-www/architecture/">Architecture</a></li><li><a href="/wireframe-www/examples/">Examples</a></li></ul></div>
-        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe-www/0.3.0/wireframe-www/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe-www/blob/v0.3.0/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/scope/">The scope</a></li></ul></div>
+        <div><h2>Project</h2><ul><li><a href="https://github.com/leynos/wireframe">Source on GitHub</a></li><li><a href="https://docs.rs/wireframe/0.4.0-alpha1/wireframe/">API reference on docs.rs</a></li><li><a href="/wireframe-www/roadmap/">Roadmap</a></li><li><a href="https://github.com/leynos/wireframe/blob/v0.4.0-alpha1/LICENSE">ISC licence</a></li><li><a href="/wireframe-www/commons/">Keeping the commons</a></li><li><a href="/wireframe-www/scope/">How this site is drawn</a></li></ul></div>
         <div><h2>df12</h2><ul><li><a href="https://df12.studio/">df12 Productions</a></li><li><a href="/wireframe-www/privacy-policy/">Privacy policy</a></li><li><a href="/wireframe-www/terms-of-use/">Terms of use</a></li><li><a href="/wireframe-www/code-of-conduct/">Code of conduct</a></li></ul></div>
       </div>
-      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.3.0, released 6 April 2026</span></div>
+      <div class="wf-shell wf-footer__strip"><span>Frame. Route. Handle.</span><span>Documents wireframe 0.4.0-alpha1 ahead of its publication</span></div>
     </footer>
   </body>
 </html>
